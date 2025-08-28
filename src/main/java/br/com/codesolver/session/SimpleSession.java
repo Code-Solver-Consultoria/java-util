@@ -78,33 +78,30 @@ public class SimpleSession implements Session {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof SimpleSession)) {
+		}
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
 		SimpleSession other = (SimpleSession) obj;
 		Integer selfID 	= getParam(ID);
 		Integer otherID	= other.getParam(ID);
-		if ((selfID == null) && (otherID == null)) {
+		if (selfID == null && otherID == null) {
 			return true;
-		} else if ((selfID == null) || (otherID == null)) {
+		} else if (selfID == null || otherID == null) {
 			return false;
 		}
 		return selfID.intValue() == otherID.intValue();
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		
 		builder.append("Session[");
-		Set<SessionParam<?>> params = getParams();
 		boolean first = true;
-		for (SessionParam param : params) {
+		for (SessionParam<?> param : getParams()) {
 			if (!first) {
 				builder.append(",");
 			}

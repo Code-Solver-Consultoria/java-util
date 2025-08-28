@@ -1,13 +1,14 @@
 package br.com.codesolver.session;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Chave de Sessão para o gerenciador.
  *
- * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
+ * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira
+ *         Rodrigues</a>
  * @since 2025-08-26
- *
  * @param <T> Tipo da chave de sessão.
  */
 public class SessionKey<T> implements Serializable {
@@ -16,7 +17,7 @@ public class SessionKey<T> implements Serializable {
 	 * Parâmetro identificador da chave.
 	 */
 	private SessionParam<T> param;
-	
+
 	/**
 	 * Valor do parâmetro.
 	 */
@@ -24,19 +25,18 @@ public class SessionKey<T> implements Serializable {
 
 	/**
 	 * Construtor da chave de sessão.
-	 * 
+	 *
 	 * @param param Parâmetro de identificação da sessão.
 	 * @param value Valor do parâmetro.
 	 */
 	public SessionKey(SessionParam<T> param, T value) {
-		super();
 		this.param = param;
 		this.value = value;
 	}
 
 	/**
 	 * Recupera o parâmetro de sessão.
-	 * 
+	 *
 	 * @return Parâmetro de sessão.
 	 */
 	public SessionParam<T> getParam() {
@@ -45,7 +45,7 @@ public class SessionKey<T> implements Serializable {
 
 	/**
 	 * Recupera o valor armazenado no parâmetro de sessão.
-	 * 
+	 *
 	 * @return Valor do parâmetro.
 	 */
 	public T getValue() {
@@ -53,6 +53,7 @@ public class SessionKey<T> implements Serializable {
 	}
 
 	@Override
+	// CHECKSTYLE:OFF
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -60,38 +61,29 @@ public class SessionKey<T> implements Serializable {
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		return result;
 	}
+	// CHECKSTYLE:ON
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SessionKey other = (SessionKey) obj;
-		if (param == null) {
-			if (other.param != null)
-				return false;
-		} else if (!param.equals(other.param))
-			return false;
-		if (value == null) {
-			if (other.value != null)
-				return false;
-		} else if (!value.equals(other.value))
-			return false;
-		return true;
+		}
+		SessionKey<?> other = (SessionKey<?>) obj;
+		return Objects.equals(param, other.param) && Objects.equals(value, other.value);
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		
+
 		builder.append(getClass());
 		builder.append("[");
 		builder.append(param.getName()).append("=").append(value);
 		builder.append("]");
-		
+
 		return builder.toString();
 	}
 }

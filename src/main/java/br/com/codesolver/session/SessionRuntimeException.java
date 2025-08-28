@@ -2,8 +2,10 @@ package br.com.codesolver.session;
 
 /**
  * Informa um erro no processamento de dados da sessão.
+ *
  * <p>
  * Esta exceção fornece vários construtores para diferentes cenários de uso:
+ *
  * <ul>
  *   <li>Construtor sem argumentos para exceções genéricas.</li>
  *   <li>Construtor com mensagem para descrição detalhada do erro.</li>
@@ -19,10 +21,11 @@ public class SessionRuntimeException extends RuntimeException {
 
     /**
      * Constrói uma nova {@code SessionRuntimeException} com {@code null} como mensagem de detalhe.
+     *
+     * <p>
      * A causa não é inicializada e pode ser definida posteriormente através de {@link Throwable#initCause}.
      */
     public SessionRuntimeException() {
-        super();
     }
 
     /**

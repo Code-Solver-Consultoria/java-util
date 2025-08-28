@@ -2,6 +2,7 @@ package br.com.codesolver.session;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Logger;
@@ -18,12 +19,12 @@ public class SessionParam<T> implements Serializable {
 	/**
 	 * Log da classe.
 	 */
-	private static final Logger logger = Logger.getLogger(SessionParam.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(SessionParam.class.getName());
 	
 	/**
 	 * Nomes dos parâmetros.
 	 */
-	private static final ConcurrentMap<String, Boolean> names = new ConcurrentHashMap<String, Boolean>();
+	private static final ConcurrentMap<String, Boolean> NAMES = new ConcurrentHashMap<String, Boolean>();
 	
 	/**
 	 * Nome interno do parâmetro.
@@ -32,21 +33,23 @@ public class SessionParam<T> implements Serializable {
 
 	/**
 	 * Gerenciamento de nomes de parâmetros.
-	 * 
+	 *
 	 * @param name Nome único do parâmetro.
 	 */
 	public SessionParam(String name) {
 		if (name == null) {
 			String message = MessageFormat.format("Parâmetro não pode ser nulo.", name);
-			logger.severe(message);
+			LOGGER.severe(message);
 			throw new SessionRuntimeException(message);
-		} else if (name.isEmpty()) {
+		} 
+		if (name.isEmpty()) {
 			String message = MessageFormat.format("Parâmetro está vazio.", name);
-			logger.severe(message);
+			LOGGER.severe(message);
 			throw new SessionRuntimeException(message);
-		} else if (names.putIfAbsent(name, Boolean.TRUE) != null) {
+		} 
+		if (NAMES.putIfAbsent(name, Boolean.TRUE) != null) {
 			String message = MessageFormat.format("Parâmetro {0} já está em uso.", name);
-			logger.severe(message);
+			LOGGER.severe(message);
 			throw new SessionRuntimeException(message);
 		}
 		this.name = name;
@@ -54,7 +57,7 @@ public class SessionParam<T> implements Serializable {
 
 	/**
 	 * Nome de identificação do parâmetro de sessão.
-	 * 
+	 *
 	 * @return name Nome do parâmetro de Sessão.
 	 */
 	public String getName() {
@@ -62,33 +65,30 @@ public class SessionParam<T> implements Serializable {
 	}
 
 	@Override
+	// CHECKSTYLE:OFF
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+	// CHECKSTYLE:ON
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SessionParam other = (SessionParam) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+		}
+		SessionParam<?> other = (SessionParam<?>) obj;
+		return Objects.equals(name, other.name);
 	}
 
 	/**
 	 * Verifica se o parâmetro foi atribuído corretamente.
+	 *
 	 * @param value Apenas o valor para verificação.
 	 */
 	public void validate(T value) {
