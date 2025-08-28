@@ -2,7 +2,7 @@ package br.com.codesolver.digester;
 
 /** 
  * Algoritimos para utilizacao do calculo de HASH.
- * 
+ *
  * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
  * @since 2025-08-26
  */
@@ -28,16 +28,16 @@ public enum AlgorithmType {
 	
 	/**
 	 * Construtor oculto.
-	 * 
+	 *
 	 * @param value Nome do algorítimo.
 	 */
-	private AlgorithmType(String value) {
+	AlgorithmType(String value) {
 		this.value = value;
 	}
 	
 	/**
 	 * Recupera o nome do algorítimo.
-	 * 
+	 *
 	 * @return Nome do algorítimo.
 	 */
 	public String getValue() {

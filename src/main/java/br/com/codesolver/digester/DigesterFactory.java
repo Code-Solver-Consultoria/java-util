@@ -2,7 +2,7 @@ package br.com.codesolver.digester;
 
 /**
  * Cria o processador de HASH adequado para o algorítimo informado.
- * 
+ *
  * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
  * @since 2025-08-26
  * @see Digester
@@ -18,6 +18,7 @@ public final class DigesterFactory {
 
 	/**
 	 * Recupera o processador de HASH adequando para o algorítimo.
+	 *
 	 * @param algorithm {@link AlgorithmType}
 	 * @return {@link Digester}
 	 */

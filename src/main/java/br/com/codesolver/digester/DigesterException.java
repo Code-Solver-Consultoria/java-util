@@ -1,9 +1,11 @@
 package br.com.codesolver.digester;
 
 /**
- * Informa um erro ocorrido em {@link DigesterSUN}
+ * Informa um erro ocorrido em {@link DigesterSUN}.
+ *
  * <p>
  * Esta exceção fornece vários construtores para diferentes cenários de uso:
+ *
  * <ul>
  *   <li>Construtor sem argumentos para exceções genéricas.</li>
  *   <li>Construtor com mensagem para descrição detalhada do erro.</li>
@@ -19,10 +21,11 @@ public class DigesterException extends RuntimeException {
 
     /**
      * Constrói uma nova {@code DigesterException} com {@code null} como mensagem de detalhe.
+     *
+     * <p>
      * A causa não é inicializada e pode ser definida posteriormente através de {@link Throwable#initCause}.
      */
     public DigesterException() {
-        super();
     }
 
     /**

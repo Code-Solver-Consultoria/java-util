@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Logger;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -17,53 +20,77 @@ import org.junit.jupiter.api.Test;
  */
 public class TestUUIDGenerator {
 
+	/** Log da classe. */
+	private static final Logger logger = Logger.getLogger(TestUUIDGenerator.class.getName());
+
 	/**
-	 * Test method for {@link br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String)}.
+	 * Preparando os testes unitários para TestUUIDGenerator.
+	 */
+	@BeforeAll
+	public static void before() {
+		logger.info("Preparando os testes unitários para TestUUIDGenerator.");
+	}
+
+	/**
+	 * Finalizando os testes unitários para TestUUIDGenerator.
+	 */
+	@AfterAll
+	public static void after() {
+		logger.info("Finalizando os testes unitários para TestUUIDGenerator.");
+	}
+
+	/**
+	 * Teste unitário para {@link br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String)}.
 	 */
 	@Test
 	public void testUUIDGenerator() {
+		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String).");
 		UUIDGenerator generator = new UUIDGenerator("node");
 		assertNotNull(generator);
 	}
 	
 	/**
-	 * Test method for {@link br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String)},
-	 * com node nulo
+	 * Teste unitário para {@link br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String)}
+	 * com node nulo.
 	 */
 	@Test
 	public void testUUIDGeneratorNodeNull() {
+		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node nulo.");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			new UUIDGenerator(null);
 		});
 	}
 	
 	/**
-	 * Test method for {@link br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String)},
-	 * com node vazio
+	 * Teste unitário para {@link br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String)}
+	 * com node vazio.
 	 */
 	@Test
 	public void testUUIDGeneratorNodeEmpty() {
+		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node vazio.");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			new UUIDGenerator("");
 		});
 	}
 	
 	/**
-	 * Test method for {@link br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String)},
+	 * Teste unitário para {@link br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String)}
 	 * com node inválido por exceder o tamanho.
 	 */
 	@Test
 	public void testUUIDGeneratorNodeInvalid() {
+		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node inválido por exceder o tamanho.");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			new UUIDGenerator("1234567890");
 		});
 	}
 
 	/**
-	 * Test method for {@link br.com.codesolver.uuid.UUIDGenerator#generate()}.
+	 * Teste unitário para {@link br.com.codesolver.uuid.UUIDGenerator#generate()}.
 	 */
 	@Test
 	public void testGenerate() {
+		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#generate().");
 		UUIDGenerator generator = new UUIDGenerator("node");
 		assertNotNull(generator);
 		
@@ -72,11 +99,11 @@ public class TestUUIDGenerator {
 	}
 	
 	/**
-	 * Test method for {@link br.com.codesolver.uuid.UUIDGenerator#generate()}.
-	 * @throws InterruptedException 
+	 * Teste unitário para {@link br.com.codesolver.uuid.UUIDGenerator#generate()}.
 	 */
 	@Test
-	public void testGenerateMulti() throws InterruptedException {
+	public void testGenerateMulti() {
+		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#generate().");
 		UUIDGenerator generator = new UUIDGenerator("node");
 		assertNotNull(generator);
 		
@@ -98,10 +125,11 @@ public class TestUUIDGenerator {
 
 
 	/**
-	 * Test method for {@link br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID)}.
+	 * Teste unitário para {@link br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID)}.
 	 */
 	@Test
 	public void testGetDate() {
+		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID).");
 		UUIDGenerator generator = new UUIDGenerator("node");
 		assertNotNull(generator);
 		
@@ -113,10 +141,12 @@ public class TestUUIDGenerator {
 	}
 	
 	/**
-	 * Test method for {@link br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID)}.
+	 * Teste unitário para {@link br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID)} 
+	 * com UUID diferente do tipo 1.
 	 */
 	@Test
 	public void testGetDateErrorType() {
+		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID) com UUID diferente do tipo 1.");
 		assertThrowsExactly(UUIDGeneratorVersionInvalid.class, () -> {
 			UUID uuid = UUID.randomUUID();
 			UUIDGenerator.getDate(uuid);

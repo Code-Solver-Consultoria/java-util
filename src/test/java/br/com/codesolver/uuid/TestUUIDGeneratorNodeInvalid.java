@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 import java.util.logging.Logger;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -16,13 +18,29 @@ public class TestUUIDGeneratorNodeInvalid {
 	
 	/** Log da classe. */
 	private static final Logger logger = Logger.getLogger(TestUUIDGeneratorNodeInvalid.class.getName());
+
+	/**
+	 * Preparando os testes unitários para TestUUIDGeneratorNodeInvalid.
+	 */
+	@BeforeAll
+	public static void before() {
+		logger.info("Preparando os testes unitários para TestUUIDGeneratorNodeInvalid.");
+	}
+
+	/**
+	 * Finalizando os testes unitários de TestUUIDGeneratorNodeInvalid.
+	 */
+	@AfterAll
+	public static void after() {
+		logger.info("Finalizando os testes unitários para TestUUIDGeneratorNodeInvalid.");
+	}
 	
 	/**
 	 * Teste unitário para {@link UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid()}.
 	 */
 	@Test
 	public void testConstructor() {
-		logger.config("Teste unitário para Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid().");
+		logger.config("Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid().");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			throw new UUIDGeneratorNodeInvalid();
 		});
@@ -33,7 +51,7 @@ public class TestUUIDGeneratorNodeInvalid {
 	 */
 	@Test
 	public void testConstructorString() {
-		logger.config("Teste unitário para Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String).");
+		logger.config("Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String).");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			throw new UUIDGeneratorNodeInvalid("Erro com mensagem");
 		});
@@ -44,7 +62,7 @@ public class TestUUIDGeneratorNodeInvalid {
 	 */
 	@Test
 	public void testConstructorThrowable() {
-		logger.config("Teste unitário para Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(Throwable).");
+		logger.config("Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(Throwable).");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			throw new UUIDGeneratorNodeInvalid(new Exception());
 		});
@@ -55,7 +73,7 @@ public class TestUUIDGeneratorNodeInvalid {
 	 */
 	@Test
 	public void testConstructorStringThrowable() {
-		logger.config("Teste unitário para Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String, Throwable).");
+		logger.config("Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String, Throwable).");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			throw new UUIDGeneratorNodeInvalid("Erro com mensagem", new Exception());
 		});
@@ -66,7 +84,7 @@ public class TestUUIDGeneratorNodeInvalid {
 	 */
 	@Test
 	public void testConstructorStringThrowableBooleanBoolean() {
-		logger.config("Teste unitário para Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String, Throwable, boolean, boolean).");
+		logger.config("Teste unitário para UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String, Throwable, boolean, boolean).");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			throw new UUIDGeneratorNodeInvalid("Erro com mensagem", new Exception(), false, false);
 		});
