@@ -13,6 +13,9 @@ import java.util.Arrays;
  */
 public class MacAddress implements Serializable {
 
+	/** Mensagem de erro para índice de octeto. */
+	private static final String OCTET_RANGE_ERROR = "Índice %d fora do range válido para um octeto.";
+
 	/** Tamanho da estrutura de dados do MacAddress. */
 	private static final int SIZE = 6;
 
@@ -31,7 +34,7 @@ public class MacAddress implements Serializable {
 
 	/**
 	 * Construtor com os campos.
-	 * 
+	 *
 	 * @param octet1 Primeiro octeto.
 	 * @param octet2 Segundo octeto.
 	 * @param octet3 Terceiro octeto.
@@ -46,35 +49,35 @@ public class MacAddress implements Serializable {
 		this.octets[--index] = octet6;
 		this.octets[--index] = octet5;
 		this.octets[--index] = octet4;
+		this.octets[--index] = octet3;
 		this.octets[--index] = octet2;
-		this.octets[--index] = octet1;
 		this.octets[--index] = octet1;
 	}
 
 	/**
 	 * Recupera o valor de um octeto específico.
-	 * 
+	 *
 	 * @param index Índice do octeto para recuperar.
 	 * @return Valor do Octeto.
 	 * @throws InvalidParameterException Índice fora do range de um octeto.
 	 */
 	public byte getOctect(int index) {
-		if ((index < ZERO) || (index >= SIZE)) {
-			throw new InvalidParameterException(String.format("Índice %d fora do range válido para um octeto.", index));
+		if (index < ZERO || index >= SIZE) {
+			throw new InvalidParameterException(String.format(OCTET_RANGE_ERROR, index));
 		}
 		return octets[index];
 	}
 
 	/**
 	 * Atribui um novo valor para um octeto na posição específica.
-	 * 
+	 *
 	 * @param index Índice do octeto para atribuir.
 	 * @param value Valor do octeto.
 	 * @throws InvalidParameterException Índice fora do range de um octeto.
 	 */
 	public void setOctect(int index, byte value) {
-		if ((index < ZERO) || (index >= SIZE)) {
-			throw new InvalidParameterException(String.format("Índice %d fora do range válido para um octeto.", index));
+		if (index < ZERO || index >= SIZE) {
+			throw new InvalidParameterException(String.format(OCTET_RANGE_ERROR, index));
 		}
 		octets[index] = value;
 	}

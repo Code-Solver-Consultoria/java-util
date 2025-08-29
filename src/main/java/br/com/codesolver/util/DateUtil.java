@@ -12,10 +12,23 @@ import java.util.Map;
 /**
  * Manipulação de Datas.
  *
- * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
+ * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira
+ *         Rodrigues</a>
  * @since 2025-08-26
  */
 public final class DateUtil {
+
+    /** Total de milisegundos em 1 segundo. */
+    private static final int SECOND_IN_MILIS = 1000;
+
+    /** Total de segundos em 1 minuto. */
+    private static final int MINUTE_IN_SECONDS = 60;
+
+    /** Total de minutos em 1 hora. */
+    private static final int HOUR_IN_MINUTES = 60;
+
+    /** Total de horas em 1 dia. */
+    private static final int DAY_IN_HOURS = 24;
 
     /** Formatos reconhecidos de datas. */
     private static Map<Locale, String> dateFormats = null;
@@ -29,9 +42,7 @@ public final class DateUtil {
     /** Formato padrão para regiões desconhecidas. */
     private static final String DEFAULT_DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm:ss";
 
-    /**
-     * A localização e padrão de datas do Brasil e Estados Unidos.
-     */
+    // Inicializando as configuraçãoes de data para Brasil e Estados Unidos.
     static {
         Locale.setDefault(Locale.of("pt", "BR"));
 
@@ -48,18 +59,18 @@ public final class DateUtil {
     private DateUtil() {
     }
 
-    /** 
+    /**
      * Mapa de chave e valor contento as localizadas e seus formatos de data.
-     * 
-     * @return Mapa de formatos. 
+     *
+     * @return Mapa de formatos.
      */
     private static Map<Locale, String> getDateFormats() {
         return dateFormats;
     }
 
-    /** 
+    /**
      * Mapa de chave valor contendo as localidades e seus formatos de data e hora.
-     * 
+     *
      * @return Mapa de formatos.
      */
     private static Map<Locale, String> getDateTimeFormats() {
@@ -68,6 +79,7 @@ public final class DateUtil {
 
     /**
      * Remove o horário de uma data.
+     *
      * @param date {@link Date}.
      * @return {@link Date}.
      */
@@ -88,7 +100,8 @@ public final class DateUtil {
 
     /**
      * Adiciona dias em uma data informada.
-     * @param date Data base.
+     *
+     * @param date  Data base.
      * @param value Dias para adicionar.
      * @return {@link Date}.
      */
@@ -101,20 +114,21 @@ public final class DateUtil {
 
     /**
      * Transforma uma data em sua representação de caracteres para o idioma padrão.
-     * 
-     * @param date {@link Date}
+     *
+     * @param date {@link Date}.
      * @return Data no formato de texto, formatado para a localidade padrão.
      */
     public static String dateToString(Date date) {
         return dateToString(date, Locale.getDefault());
     }
-    
+
     /**
-     * Transforma uma data em sua representação de caracteres pra o idioma informado.
+     * Transforma uma data em sua representação de caracteres pra o idioma
+     * informado.
      *
-     * @param date {@link Date}
-     * @param locale {@link Locale}
-     * @return {@link String}
+     * @param date   {@link Date}.
+     * @param locale {@link Locale}.
+     * @return {@link String}.
      */
     public static String dateToString(Date date, Locale locale) {
         String dateFormat = getDateFormats().get(locale);
@@ -123,36 +137,39 @@ public final class DateUtil {
         }
         return new SimpleDateFormat(dateFormat).format(date);
     }
-    
+
     /**
-     * Transforma um sequência de caracteres para uma data no idioma padrão. 
+     * Transforma um sequência de caracteres para uma data no idioma padrão.
+     *
      * @param value Texto representando uma data.
-     * @return {@link Date}
+     * @return {@link Date}.
      * @throws ParseException Não foi possível interpretar o valor.
      */
     public static Date stringToDate(String value) throws ParseException {
-    	return stringToDate(value, Locale.getDefault());
-    }    
-    
-    /**
-     * Transforma um sequência de caracteres para uma data no idioma informado. 
-     * @param value Texto representando uma data.
-     * @param locale {@link Locale}
-     * @return {@link Date}
-     * @throws ParseException Não foi possível interpretar o valor.
-     */
-    public static Date stringToDate(String value, Locale locale) throws ParseException {
-    	String dateFormat = getDateFormats().get(locale);
-    	if (dateFormat == null) {
-    		dateFormat = DEFAULT_DATE_FORMAT;
-    	}
-    	return new SimpleDateFormat(dateFormat).parse(value);
+        return stringToDate(value, Locale.getDefault());
     }
 
     /**
-     * Transforma uma data e hora em sua representação de caracteres para o idioma padrão.
-     * 
-     * @param date {@link Date}
+     * Transforma um sequência de caracteres para uma data no idioma informado.
+     *
+     * @param value  Texto representando uma data.
+     * @param locale {@link Locale}.
+     * @return {@link Date}.
+     * @throws ParseException Não foi possível interpretar o valor.
+     */
+    public static Date stringToDate(String value, Locale locale) throws ParseException {
+        String dateFormat = getDateFormats().get(locale);
+        if (dateFormat == null) {
+            dateFormat = DEFAULT_DATE_FORMAT;
+        }
+        return new SimpleDateFormat(dateFormat).parse(value);
+    }
+
+    /**
+     * Transforma uma data e hora em sua representação de caracteres para o idioma
+     * padrão.
+     *
+     * @param date {@link Date}.
      * @return Data no formato de texto da localidade padrão.
      */
     public static String dateTimeToString(Date date) {
@@ -160,11 +177,12 @@ public final class DateUtil {
     }
 
     /**
-     * Transforma uma data e hora em sua representação de caracteres para o idioma informado.
+     * Transforma uma data e hora em sua representação de caracteres para o idioma
+     * informado.
      *
-     * @param date {@link Date}
-     * @param locale {@link Locale}
-     * @return {@link String}
+     * @param date   {@link Date}.
+     * @param locale {@link Locale}.
+     * @return {@link String}.
      */
     public static String dateTimeToString(Date date, Locale locale) {
         String dateFormat = getDateTimeFormats().get(locale);
@@ -173,20 +191,24 @@ public final class DateUtil {
         }
         return new SimpleDateFormat(dateFormat).format(date);
     }
-    
+
     /**
-     * Transforma uma representação de caracteres para uma data e hora no idioma informado.
+     * Transforma uma representação de caracteres para uma data e hora no idioma
+     * informado.
+     *
      * @param value Representação em texto de uma data e hora.
-     * @return {@link Date}
+     * @return {@link Date}.
      * @throws ParseException Não foi possível interpretar o valor.
      */
     public static Date stringToDateTime(String value) throws ParseException {
-    	return stringToDateTime(value, Locale.getDefault());
+        return stringToDateTime(value, Locale.getDefault());
     }
-    
+
     /**
-     * Transforma uma representação de caracteres para uma data e hora no idioma informado.
-     * @param value Representação em texto de uma data e hora.
+     * Transforma uma representação de caracteres para uma data e hora no idioma
+     * informado.
+     *
+     * @param value  Representação em texto de uma data e hora.
      * @param locale {@link Locale}.
      * @return {@link Date}.
      * @throws ParseException Valor informado não pode ser interpretado.
@@ -201,20 +223,22 @@ public final class DateUtil {
 
     /**
      * Verifica se uma data refere-se a um final de semana.
-     * @param date {@link Date}
+     *
+     * @param date {@link Date}.
      * @return Verdadeiro ou false.
      */
     public static boolean isWeekend(Date date) {
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTime(date);
-        return ((calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) || (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY));
+        return calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
+                || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
     }
 
     /**
      * Calcula a diferença de milisegundos entre duas datas, onde a data inicial
      * deve ser menor que a data final.
      *
-     * @param begin {@link Date} inicial.
+     * @param begin  {@link Date} inicial.
      * @param finish {@link Date} final.
      * @return Diferença em milisegundos entre as datas.
      */
@@ -230,23 +254,23 @@ public final class DateUtil {
      * Calcula a diferença de segundos entre duas datas, onde a data inicial
      * deve ser menor que a data final.
      *
-     * @param begin {@link Date} inicial.
+     * @param begin  {@link Date} inicial.
      * @param finish {@link Date} final.
      * @return Diferença em segundos entre as datas.
      */
     public static long secondsBetween(Date begin, Date finish) {
-        Calendar _begin		= new GregorianCalendar();
-        Calendar _finish	= new GregorianCalendar();
+        Calendar cbegin     = new GregorianCalendar();
+        Calendar cfinish    = new GregorianCalendar();
 
-        _begin.setTime(begin);
-        _begin.set(Calendar.MILLISECOND, 0);
-        _finish.setTime(finish);
-        _finish.set(Calendar.MILLISECOND, 0);
+        cbegin.setTime(begin);
+        cbegin.set(Calendar.MILLISECOND, 0);
+        cfinish.setTime(finish);
+        cfinish.set(Calendar.MILLISECOND, 0);
 
-        long difference	 	= milisBetween(_begin.getTime(), _finish.getTime());
-        long result 		= 0;
-        if (difference >= 1000) {
-            result = (difference / 1000);
+        long difference = milisBetween(cbegin.getTime(), cfinish.getTime());
+        long result = 0;
+        if (difference >= SECOND_IN_MILIS) {
+            result = difference / SECOND_IN_MILIS;
         }
         return result;
     }
@@ -255,15 +279,15 @@ public final class DateUtil {
      * Calcula a diferença de minutos entre duas datas, onde a data inicial
      * deve ser menor que a data final.
      *
-     * @param begin {@link Date} inicial.
+     * @param begin  {@link Date} inicial.
      * @param finish {@link Date} final.
      * @return Diferença em minutos entre as datas.
      */
     public static long minutesBetween(Date begin, Date finish) {
-        long difference	 	= secondsBetween(begin, finish);
-        long result 		= 0;
-        if (difference >= 60) {
-            result = (difference / 60);
+        long difference = secondsBetween(begin, finish);
+        long result = 0;
+        if (difference >= MINUTE_IN_SECONDS) {
+            result = difference / MINUTE_IN_SECONDS;
         }
         return result;
     }
@@ -272,15 +296,15 @@ public final class DateUtil {
      * Calcula a diferença de horas entre duas datas, onde a data inicial
      * deve ser menor que a data final.
      *
-     * @param begin {@link Date} inicial.
+     * @param begin  {@link Date} inicial.
      * @param finish {@link Date} final.
      * @return Diferença em horas entre as datas.
      */
     public static long hoursBetween(Date begin, Date finish) {
-        long difference	 	= minutesBetween(begin, finish);
-        long result 		= 0;
-        if (difference >= 60) {
-            result = (difference / 60);
+        long difference = minutesBetween(begin, finish);
+        long result = 0;
+        if (difference >= HOUR_IN_MINUTES) {
+            result = difference / HOUR_IN_MINUTES;
         }
         return result;
     }
@@ -289,15 +313,15 @@ public final class DateUtil {
      * Calcula a diferença de dias entre duas datas, onde a data inicial
      * deve ser menor que a data final.
      *
-     * @param begin {@link Date} inicial.
+     * @param begin  {@link Date} inicial.
      * @param finish {@link Date} final.
      * @return Diferença em dias entre as datas.
      */
     public static long daysBetween(Date begin, Date finish) {
-        long difference	 	= hoursBetween(begin, finish);
-        long result 		= 0;
-        if (difference >= 24) {
-            result = (difference / 24);
+        long difference = hoursBetween(begin, finish);
+        long result = 0;
+        if (difference >= DAY_IN_HOURS) {
+            result = difference / DAY_IN_HOURS;
         }
         return result;
     }

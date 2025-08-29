@@ -9,9 +9,11 @@ import java.util.regex.Pattern;
 /**
  * No Java, utiliza-se a classe Date para gerenciar os horários. Mas, se o dia, mês e ano 
  * não forem realmente iguais, a comparação de horários não será considerada igual.
+ *
  * <p>
  * A classe Time serve para gerenciar apenas os horários, sem que se tenha a preocupação com os
  * outros fatores da classe Date.
+ *
  * <p>
  * A data base é 1 de Janeiro de 1970 (UTC).
  *
@@ -19,6 +21,15 @@ import java.util.regex.Pattern;
  * @since 2025-08-26
  */
 public class Time implements Serializable {
+
+	/** Valor máximo para segundos. */
+	private static final int MAX_SECONDS = 60;
+
+	/** Valor máximo para minutos. */
+	private static final int MAX_MINUTES = 60;
+
+	/** Valor máximo para horas. */
+	private static final int MAX_HOURS = 24;
 	
 	/**
 	 * Ano base para gerenciamento do horário.
@@ -49,7 +60,7 @@ public class Time implements Serializable {
 	 * Construtor padrão, assumindo o horário de criação.
 	 */
 	public Time() {
-		calendar	= new GregorianCalendar();
+		calendar = new GregorianCalendar();
 		calendar.set(Calendar.YEAR, YEAR);
 		calendar.set(Calendar.MONTH, MONTH);
 		calendar.set(Calendar.DATE, DATE);
@@ -59,20 +70,21 @@ public class Time implements Serializable {
 
 	/**
 	 * Construtor atribuindo o horário inicial. Os milisegundos são zerados.
+	 *
 	 * @param hour Hora, no formato 24 horas.
-	 * @param minute Minuto
-	 * @param second Segundo
+	 * @param minute Minuto.
+	 * @param second Segundo.
 	 * @throws TimeRuntimeException Horário informado inválido.
 	 */
 	public Time(int hour, int minute, int second) {
 		this();
-		if (second >= 60) {
+		if (second >= MAX_SECONDS) {
 			throw new TimeRuntimeException("Segundos devem ser menor que 60.");
 		}
-		if (minute >= 60) {
+		if (minute >= MAX_MINUTES) {
 			throw new TimeRuntimeException("Minutos devem ser menor que 60.");
 		}
-		if (hour >= 24) {
+		if (hour >= MAX_HOURS) {
 			throw new TimeRuntimeException("Horas devem ser menor que 24.");
 		}
 		calendar.set(Calendar.SECOND, second);
@@ -82,6 +94,7 @@ public class Time implements Serializable {
 	
 	/**
 	 * Recupera a hora do dia, no formato 24 horas.
+	 *
 	 * @return int
 	 */
 	public int getHour() {
@@ -90,6 +103,7 @@ public class Time implements Serializable {
 	
 	/**
 	 * Recupera os minutos.
+	 *
 	 * @return int
 	 */
 	public int getMinute() {
@@ -98,6 +112,7 @@ public class Time implements Serializable {
 	
 	/**
 	 * Recupera os segundos do horário.
+	 *
 	 * @return int
 	 */
 	public int getSecond() {
@@ -108,37 +123,42 @@ public class Time implements Serializable {
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
+	// CHECKSTYLE:OFF
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((calendar == null) ? 0 : calendar.hashCode());
 		return result;
 	}
+	// CHECKSTYLE:ON
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		}
 		Time other = (Time) obj;
 		if (calendar == null) {
-			if (other.calendar != null)
+			if (other.calendar != null) {
 				return false;
-		} else if (toString().compareTo(other.toString()) != 0)
+			}
+		} else if (toString().compareTo(other.toString()) != 0) {
 			return false;
+		}
 		return true;
 	}
 	
 	/**
-	 * Recupera um horário baseado em uma String, no formato <b>hh:mm:ss</b>
-	 * @param value Horário
-	 * @return {@link Time}
+	 * Recupera um horário baseado em uma String, no formato <b>hh:mm:ss</b>.
+	 *
+	 * @param value Horário.
+	 * @return {@link Time}.
 	 */
 	public static Time parse(String value) {
 		Time result		= null;
@@ -150,7 +170,9 @@ public class Time implements Serializable {
 			int second		= Integer.valueOf(parts[2]);
 			result			= new Time(hour, minute, second);
 		} else {
-			throw new TimeRuntimeException(String.format("%s não tem um formato válido para horário (hh:mm:ss)", value));
+			throw new TimeRuntimeException(
+					String.format("%s não tem um formato válido para horário (hh:mm:ss)", 
+					value));
 		}
 		return result;
 	}

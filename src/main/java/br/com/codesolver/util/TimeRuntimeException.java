@@ -2,8 +2,10 @@ package br.com.codesolver.util;
 
 /**
  * Informa um erro na manipulação de um horário.
+ *
  * <p>
  * Esta exceção fornece vários construtores para diferentes cenários de uso:
+ *
  * <ul>
  *   <li>Construtor sem argumentos para exceções genéricas.</li>
  *   <li>Construtor com mensagem para descrição detalhada do erro.</li>
@@ -22,7 +24,6 @@ public class TimeRuntimeException extends RuntimeException {
      * A causa não é inicializada e pode ser definida posteriormente através de {@link Throwable#initCause}.
      */
     public TimeRuntimeException() {
-        super();
     }
 
     /**

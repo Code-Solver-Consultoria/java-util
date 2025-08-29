@@ -2,13 +2,14 @@ package br.com.codesolver.util;
 
 /**
  * Exceção lançada para indicar um problema relacionado ao tratamento de versões na aplicação.
+ *
  * <p>
  * Esta é uma exceção de tempo de execução e pode ser utilizada para sinalizar erros que ocorrem durante
  * a validação, o parsing ou a verificação de compatibilidade de versões.
- * </p>
  *
  * <p>
  * Esta exceção fornece vários construtores para diferentes cenários de uso:
+ *
  * <ul>
  *   <li>Construtor sem argumentos para exceções genéricas.</li>
  *   <li>Construtor com mensagem para descrição detalhada do erro.</li>
@@ -27,7 +28,6 @@ public class VersionRuntimeException extends RuntimeException {
      * A causa não é inicializada e pode ser definida posteriormente através de {@link Throwable#initCause}.
      */
     public VersionRuntimeException() {
-        super();
     }
 
     /**
