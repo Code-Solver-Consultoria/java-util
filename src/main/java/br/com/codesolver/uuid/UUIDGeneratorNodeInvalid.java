@@ -3,10 +3,13 @@ package br.com.codesolver.uuid;
 
 /**
  * Informa que o nome de gerador de UUID é invalido.
+ *
  * <p>
  * Ocorre quando o nome é nulo, vazio ou quando possui mais de 6 (seis) caracteres.
+ *
  * <p>
  * Esta exceção fornece vários construtores para diferentes cenários de uso:
+ *
  * <ul>
  *   <li>Construtor sem argumentos para exceções genéricas.</li>
  *   <li>Construtor com mensagem para descrição detalhada do erro.</li>
@@ -18,6 +21,7 @@ package br.com.codesolver.uuid;
  * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
  * @since 2025-08-26
  */
+@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
 public class UUIDGeneratorNodeInvalid extends RuntimeException {
 
     /**
@@ -25,7 +29,6 @@ public class UUIDGeneratorNodeInvalid extends RuntimeException {
      * A causa não é inicializada e pode ser definida posteriormente através de {@link Throwable#initCause}.
      */
     public UUIDGeneratorNodeInvalid() {
-        super();
     }
 
     /**

@@ -1,6 +1,6 @@
 /**
  * Informações do módulo de utilitários para aplicativos em Java.
- * 
+ *
  * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
  * @since 2025-08-26
  */

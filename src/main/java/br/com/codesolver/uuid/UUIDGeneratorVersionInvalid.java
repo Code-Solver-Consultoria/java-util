@@ -2,8 +2,10 @@ package br.com.codesolver.uuid;
 
 /**
  * Informa que a versão do UUID não é válida para extrair a data de geração.
+ *
  * <p>
  * Esta exceção fornece vários construtores para diferentes cenários de uso:
+ *
  * <ul>
  *   <li>Construtor sem argumentos para exceções genéricas.</li>
  *   <li>Construtor com mensagem para descrição detalhada do erro.</li>
@@ -15,6 +17,7 @@ package br.com.codesolver.uuid;
  * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
  * @since 2025-08-26
  */
+@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
 public class UUIDGeneratorVersionInvalid extends RuntimeException {
 
     /**
@@ -22,7 +25,6 @@ public class UUIDGeneratorVersionInvalid extends RuntimeException {
      * A causa não é inicializada e pode ser definida posteriormente através de {@link Throwable#initCause}.
      */
     public UUIDGeneratorVersionInvalid() {
-        super();
     }
 
     /**
@@ -64,7 +66,10 @@ public class UUIDGeneratorVersionInvalid extends RuntimeException {
      * @param enableSuppression indica se a supressão está habilitada ou desabilitada
      * @param writableStackTrace indica se a pilha de chamadas pode ser gravada
      */
-    protected UUIDGeneratorVersionInvalid(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    protected UUIDGeneratorVersionInvalid(String message, 
+                                        Throwable cause, 
+                                        boolean enableSuppression, 
+                                        boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

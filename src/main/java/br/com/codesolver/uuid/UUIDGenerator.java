@@ -6,10 +6,9 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
-
 /**
  * Gerador de UUID tipo 1 (time based). É um número de 128 bits, conforme a estrutura:
- * 
+ *
  * <table border="1">
  *     <caption>Estrutura do UUID v1 (time-based)</caption>
  *     <tr>
@@ -65,7 +64,7 @@ import java.util.concurrent.atomic.AtomicLong;
  *       <td colspan="32" style="text-align:center;">node (2-5)</td>
  *     </tr>
  * </table>
- * 
+ *
  * <ul>
  * 	<li><b>time_low</b>: O menor campo de data e hora, com 4 bytes.</li>
  * 	<li><b>time_mid</b>: O campo do meio da data e hora, com 6 bytes.</li>
@@ -75,16 +74,17 @@ import java.util.concurrent.atomic.AtomicLong;
  *	<li><b>clock_seq_low</b>: Menor campo do sequencial do relógio com 1 byte.</li>
  *	<li><b>node</b>: Espaço para identificar a origem de criação do UUID.</li>
  * </ul>
- * 
+ *
  * <p>
  * <i>Data e Hora é um número de 60 bits.</i>
- * 
+ *
  * <b>Baseado no documento: http://www.ietf.org/rfc/rfc4122.txt</b>
  *
  * @author Luciano Vieira Rodrigues
  * @version 1.0
  * @since 04/04/2013
  */
+@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
 public class UUIDGenerator {
 
     /**
@@ -115,6 +115,12 @@ public class UUIDGenerator {
      */
     private static final short CLOCK = (short) new Random(System.currentTimeMillis()).nextInt();
 
+    /** Máscara para remover o último byte na formação do número MSB. */
+    private static final int MASK_REMOVE_LAST_BYTE = ~0xF000;
+
+    /** Máscara para configuar o UUID como tipo 1. */
+    private static final int MASK_UUID_TYPE_1 = 0x1000;
+
     /**
      * Último nanosegundo usado para gerar uma chave UUID.
      */
@@ -127,59 +133,65 @@ public class UUIDGenerator {
 
     /**
      * Construtor padrão.
+     *
      * @param node Nome de identificação para o gerador de UUID. Não pode ser nulo, vazio ou possuir
-     * mais que 6 caracteres.
+     *             mais que 6 caracteres.
      * @throws UUIDGeneratorNodeInvalid Nome de identificação inválido.
      */
     public UUIDGenerator(String node) throws UUIDGeneratorNodeInvalid {
-        if ((node == null) || (node.isEmpty()) || (node.length() > NODE_MAX_LENGHT)) {
+        if (node == null || node.isEmpty() || node.length() > NODE_MAX_LENGHT) {
             throw new UUIDGeneratorNodeInvalid();
         }
-
         this.node 		= node;
         this.lastNanos 	= new AtomicLong(Long.MIN_VALUE);
     }
 
     /**
      * Gera uma chave Universal.
-     * @return UUID
+     *
+     * @return UUID versão 1.
      */
     public UUID generate() {
         return new UUID(makeMSB(), makeLSB());
     }
 
     /**
-     * É o primeiro parâmetro para o construtor do UUID, representando os campos:
+     * É o primeiro parâmetro para o construtor do UUID.
+     *
+     * <p>
+     * Possui os campos:
+     *
      * <ul>
      * 	<li>time_low</li>
      * 	<li>time_mid</li>
      *  <li>time_hi and version</li>
      * </ul>
+     *
      * @return long
      */
     private long makeMSB() {
         long result = 0L;
         long time = makeTime();
         // Trocando a posição dos bytes.
-        int timeHigh	= (int) (time >>> 32);
+        int timeHigh	= (int) (time >>> Integer.SIZE);
         int timeLow		= (int) time;
-        int timeMidHigh	= (timeHigh << 16) | (timeHigh >>> 16);
+        int timeMidHigh	= (timeHigh << Short.SIZE) | (timeHigh >>> Short.SIZE);
         // Adicionando a versão...
-        timeMidHigh &= ~0xF000; 	// Remove o ultimo byte...
-        timeMidHigh |= 0x1000; 		// Configura o UUID para o tipo 1 (time-based)
+        timeMidHigh &= MASK_REMOVE_LAST_BYTE; 	// Remove o ultimo byte...
+        timeMidHigh |= MASK_UUID_TYPE_1; 		// Configura o UUID para o tipo 1 (time-based)
         // Reconstruindo o número:
         result = (long) timeMidHigh;
-        result = ((result << 32) >>> 32); 		// Removendo o sinal...
-        result = (((long) timeLow) << 32) | result;
+        result = (result << Integer.SIZE) >>> Integer.SIZE; 		// Removendo o sinal...
+        result = ((long) timeLow) << Integer.SIZE | result;
         return result;
     }
 
     /**
      * Cria um data no formato UTC, em nanosegundos.
+     *
      * @return long
      */
     private long makeTime() {
-
         long result = 0L;
 
         result = System.currentTimeMillis();
@@ -197,21 +209,25 @@ public class UUIDGenerator {
 	        	result = lastNanos.addAndGet(TIME_ADVANCE);
 	        }
         } while (lastNanos.get() > result);
-        
-        return result;
 
+        return result;
     }
 
-
     /**
-     * É o segundo parâmetro passado para o construtor do UUID, representando:
+     * É o segundo parâmetro passado para o construtor do UUID.
+     *
+     * <p>
+     * Representando:
+     *
      * <ul>
      * 	<li>clock_seq_hi</li>
      * 	<li>clock_seq_low</li>
      * 	<li>node</li>
      * </ul>
+     *
      * @return long
      */
+    @SuppressWarnings("checkstyle:MagicNumber")
     private long makeLSB() {
         long result			= 0L;
         Random random		= new Random();
@@ -222,14 +238,15 @@ public class UUIDGenerator {
         }
         buffer.put(node.getBytes());
         buffer.flip();
-        result = buffer.getLong();
-        result = ((result << 2) >>> 2); 	// remove dois bits MSB
-        result |= (2L << 62); 				// Configura os dois bits MSB para 10
+        result  = buffer.getLong();
+        result  = (result << 2) >>> 2; 	    // remove dois bits MSB
+        result |= 2L << 62; 				// Configura os dois bits MSB para 10
         return result;
     }
 
     /**
      * Recupera a data de geração.
+     *
      * @param uuid UUID
      * @return Date
      */
