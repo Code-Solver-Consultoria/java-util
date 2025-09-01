@@ -1,6 +1,7 @@
 package br.com.codesolver.uuid;
 
 import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
@@ -240,7 +241,7 @@ public class UUIDGenerator {
         for (int i = 0; i < (buffer.limit() - (Short.SIZE / Byte.SIZE) - node.length()); i++) {
             buffer.put((byte) random.nextInt());
         }
-        buffer.put(node.getBytes());
+        buffer.put(node.getBytes(Charset.defaultCharset()));
         buffer.flip();
         result  = buffer.getLong();
         result  = result << 2 >>> 2; 	    // remove dois bits MSB
