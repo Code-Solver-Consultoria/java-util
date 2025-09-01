@@ -7,8 +7,6 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 /**
  * Gerador de UUID tipo 1 (time based). É um número de 128 bits, conforme a estrutura:
  *
@@ -91,6 +89,11 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 public class UUIDGenerator {
 
     /**
+     * Números randômicos para criação dos identificadores universais.
+     */
+    private static final Random RANDOM = new Random(System.currentTimeMillis());
+
+    /**
      * Tamanho máximo para o nome do gerador de UUID.
      */
     private static final int NODE_MAX_LENGHT = 6;
@@ -116,7 +119,7 @@ public class UUIDGenerator {
     /**
      * Número randômico para gerar a sequência do UUID.
      */
-    private static final short CLOCK = (short) new Random(System.currentTimeMillis()).nextInt();
+    private static final short CLOCK = (short) RANDOM.nextInt();
 
     /** Máscara para remover o último byte na formação do número MSB. */
     private static final int MASK_REMOVE_LAST_BYTE = ~0xF000;
@@ -141,7 +144,7 @@ public class UUIDGenerator {
      *             mais que 6 caracteres.
      * @throws UUIDGeneratorNodeInvalid Nome de identificação inválido.
      */
-    public UUIDGenerator(String node) throws UUIDGeneratorNodeInvalid {
+    public UUIDGenerator(String node) {
         if (node == null || node.isEmpty() || node.length() > NODE_MAX_LENGHT) {
             throw new UUIDGeneratorNodeInvalid();
         }
@@ -231,14 +234,12 @@ public class UUIDGenerator {
      * @return long
      */
     @SuppressWarnings("checkstyle:MagicNumber")
-    @SuppressFBWarnings("DMI_RANDOM_USED_ONLY_ONCE")
     private long makeLSB() {
         long result			= 0L;
-        Random random		= new Random();
         ByteBuffer buffer 	= ByteBuffer.allocate(Long.SIZE / Byte.SIZE);
         buffer.putShort(CLOCK);
         for (int i = 0; i < (buffer.limit() - (Short.SIZE / Byte.SIZE) - node.length()); i++) {
-            buffer.put((byte) random.nextInt());
+            buffer.put((byte) RANDOM.nextInt());
         }
         buffer.put(node.getBytes(Charset.defaultCharset()));
         buffer.flip();
