@@ -290,14 +290,14 @@ public final class StringUtil {
             throw new IllegalArgumentException("Formato esperado 255.255.255.255"); 
         }
 
-        String[] octetosStr = ip.split("\\."); 
-        byte[] octetos = new byte[IP_LENGTH];
+        String[] text = ip.split("\\."); 
+        byte[] octets = new byte[IP_LENGTH];
         int index = 0;
-        octetos[index] = (byte) (Integer.valueOf(octetosStr[index]).intValue() & BYTE_MASK);
-        octetos[++index] = (byte) (Integer.valueOf(octetosStr[index]).intValue() & BYTE_MASK);
-        octetos[++index] = (byte) (Integer.valueOf(octetosStr[index]).intValue() & BYTE_MASK);
-        octetos[++index] = (byte) (Integer.valueOf(octetosStr[index]).intValue() & BYTE_MASK);
-        return octetos;
+        octets[index]   = (byte) (Integer.parseInt(text[index]) & BYTE_MASK);
+        octets[++index] = (byte) (Integer.parseInt(text[index]) & BYTE_MASK);
+        octets[++index] = (byte) (Integer.parseInt(text[index]) & BYTE_MASK);
+        octets[++index] = (byte) (Integer.parseInt(text[index]) & BYTE_MASK);
+        return octets;
     }
 
     /**
