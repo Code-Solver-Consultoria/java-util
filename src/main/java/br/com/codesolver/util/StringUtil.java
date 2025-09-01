@@ -118,20 +118,21 @@ public final class StringUtil {
      * @return {@link String}
      */
     public static String padRight(String text, String stuff, int length) {
-        String aux = text;
-        if (length < aux.length()) {
-            aux = aux.substring(0, length);
+        StringBuilder aux = new StringBuilder();
+        if (length < text.length()) {
+            aux.append(text.substring(0, length));
         } else {
+            aux.append(text);
             int difference;
             while ((difference = length - aux.length()) > 0) {
                 if (stuff.length() > difference) {
-                    aux = aux + stuff.substring(0, difference);
+                    aux.append(stuff.substring(0, difference));
                 } else {
-                    aux = aux + stuff;
+                    aux.append(stuff);
                 }
             }
         }
-        return aux;
+        return aux.toString();
     }
 
     /**
