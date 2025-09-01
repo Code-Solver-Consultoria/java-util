@@ -23,7 +23,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 public class TestSimpleSession {
 	
 	/** Log da classe. */
-	private static final Logger logger = Logger.getLogger(TestSimpleSession.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TestSimpleSession.class.getName());
 
 	/** Valor para testar a sessão o parâmetro ID da sessão. */
 	private static final Integer PARAM_ID = Integer.MAX_VALUE;
@@ -33,15 +33,25 @@ public class TestSimpleSession {
 	 */
 	private static SimpleSession session;
 
+	/** Construtor padrão. */
+	public TestSimpleSession() {
+	}
+
+	/**
+	 * Preparando os testes para {@link SimpleSession}.
+	 */
 	@BeforeAll
 	public static void beforeClass() {
-		logger.info("Inicializando os testes para SimpleSession");
+		LOGGER.info("Inicializando os testes para SimpleSession");
 		session = new SimpleSession();
 	}
 
+	/**
+	 * Finalizando os testes para {@link SimpleSession}.
+	 */
 	@AfterAll
 	public static void afterClass() {
-		logger.info("Finalizando os testes para SimpleSession");
+		LOGGER.info("Finalizando os testes para SimpleSession");
 		session = null;
 	}
 
@@ -51,7 +61,7 @@ public class TestSimpleSession {
 	@Test
 	@Order(1)
 	public void testSetParam() {
-		logger.config("Testando SimpleSession#setParam(SessionParam, Object).");
+		LOGGER.config("Testando SimpleSession#setParam(SessionParam, Object).");
 		session.setParam(Session.ID, PARAM_ID);
 		assertEquals(1, session.getParams().size());
 	}
@@ -62,7 +72,7 @@ public class TestSimpleSession {
 	@Test
 	@Order(2)
 	public void testGetParam() {
-		logger.config("Testando SimpleSession#getParam(SessionParam).");
+		LOGGER.config("Testando SimpleSession#getParam(SessionParam).");
 		Integer result = session.getParam(Session.ID);
 		assertEquals(result, PARAM_ID);
 	}	
@@ -72,7 +82,7 @@ public class TestSimpleSession {
 	 */
 	@Test
 	public void testGetParamInvalid() {
-		logger.config("Testando SimpleSession#getParam(SessionParam), com parâmetro inválido.");
+		LOGGER.config("Testando SimpleSession#getParam(SessionParam), com parâmetro inválido.");
 		SessionParam<Integer> param = new SessionParam<Integer>("invalid");
 		Integer result = session.getParam(param);
 		assertNull(result);
@@ -84,7 +94,7 @@ public class TestSimpleSession {
 	@Test
 	@Order(2)
 	public void testSessionCompareTo() {
-		logger.config("Testando SimpleSession#compareTo(Session)");
+		LOGGER.config("Testando SimpleSession#compareTo(Session)");
 		Session comparable = new SimpleSession();
 		comparable.setParam(Session.ID, PARAM_ID);
 		int result = session.compareTo(comparable);
@@ -97,7 +107,7 @@ public class TestSimpleSession {
 	@Test
 	@Order(2)
 	public void testSessionCompareToOtherValue() {
-		logger.config("Testando SimpleSession#compareTo(Session), com outro valor");
+		LOGGER.config("Testando SimpleSession#compareTo(Session), com outro valor");
 		Session comparable = new SimpleSession();
 		comparable.setParam(Session.ID, PARAM_ID - 1);
 		int result = session.compareTo(comparable);
@@ -110,7 +120,7 @@ public class TestSimpleSession {
 	@Test
 	@Order(2)
 	public void testSessionCompareToParamNull() {
-		logger.config("Testando SimpleSession#compareTo(Session), com parâmetro de sessão nulo");
+		LOGGER.config("Testando SimpleSession#compareTo(Session), com parâmetro de sessão nulo");
 		Session comparable = new SimpleSession();
 		int result = session.compareTo(comparable);
 		assertEquals(result, 1);
@@ -122,7 +132,7 @@ public class TestSimpleSession {
 	@Test
 	@Order(2)
 	public void testSessionCompareToNull() {
-		logger.config("Testando SimpleSession#compareTo(Session), com parâmetro de sessão nulo");
+		LOGGER.config("Testando SimpleSession#compareTo(Session), com parâmetro de sessão nulo");
 		assertThrowsExactly(SessionRuntimeException.class, () -> {
 			session.compareTo(null);
 		});
@@ -134,7 +144,7 @@ public class TestSimpleSession {
 	@Test
 	@Order(3)
 	public void testSessionCompareSelfParamNull() {
-		logger.config("Testando SimpleSession#compareTo(Session), com parâmetro de sessão nulo");
+		LOGGER.config("Testando SimpleSession#compareTo(Session), com parâmetro de sessão nulo");
 		Session comparable = new SimpleSession();
 		int result = comparable.compareTo(session);
 		assertEquals(result, -1);

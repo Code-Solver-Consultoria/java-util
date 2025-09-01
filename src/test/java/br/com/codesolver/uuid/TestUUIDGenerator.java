@@ -21,14 +21,18 @@ import org.junit.jupiter.api.Test;
 public class TestUUIDGenerator {
 
 	/** Log da classe. */
-	private static final Logger logger = Logger.getLogger(TestUUIDGenerator.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TestUUIDGenerator.class.getName());
+
+	/** Construtor padrão. */
+	public TestUUIDGenerator() {
+	}
 
 	/**
 	 * Preparando os testes unitários para TestUUIDGenerator.
 	 */
 	@BeforeAll
 	public static void before() {
-		logger.info("Preparando os testes unitários para TestUUIDGenerator.");
+		LOGGER.info("Preparando os testes unitários para TestUUIDGenerator.");
 	}
 
 	/**
@@ -36,7 +40,7 @@ public class TestUUIDGenerator {
 	 */
 	@AfterAll
 	public static void after() {
-		logger.info("Finalizando os testes unitários para TestUUIDGenerator.");
+		LOGGER.info("Finalizando os testes unitários para TestUUIDGenerator.");
 	}
 
 	/**
@@ -44,7 +48,7 @@ public class TestUUIDGenerator {
 	 */
 	@Test
 	public void testUUIDGenerator() {
-		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String).");
+		LOGGER.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String).");
 		UUIDGenerator generator = new UUIDGenerator("node");
 		assertNotNull(generator);
 	}
@@ -55,7 +59,7 @@ public class TestUUIDGenerator {
 	 */
 	@Test
 	public void testUUIDGeneratorNodeNull() {
-		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node nulo.");
+		LOGGER.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node nulo.");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			new UUIDGenerator(null);
 		});
@@ -67,7 +71,7 @@ public class TestUUIDGenerator {
 	 */
 	@Test
 	public void testUUIDGeneratorNodeEmpty() {
-		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node vazio.");
+		LOGGER.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node vazio.");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			new UUIDGenerator("");
 		});
@@ -79,7 +83,7 @@ public class TestUUIDGenerator {
 	 */
 	@Test
 	public void testUUIDGeneratorNodeInvalid() {
-		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node inválido por exceder o tamanho.");
+		LOGGER.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#UUIDGenerator(java.lang.String) com node inválido por exceder o tamanho.");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			new UUIDGenerator("1234567890");
 		});
@@ -90,7 +94,7 @@ public class TestUUIDGenerator {
 	 */
 	@Test
 	public void testGenerate() {
-		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#generate().");
+		LOGGER.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#generate().");
 		UUIDGenerator generator = new UUIDGenerator("node");
 		assertNotNull(generator);
 		
@@ -103,7 +107,7 @@ public class TestUUIDGenerator {
 	 */
 	@Test
 	public void testGenerateMulti() {
-		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#generate().");
+		LOGGER.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#generate().");
 		UUIDGenerator generator = new UUIDGenerator("node");
 		assertNotNull(generator);
 		
@@ -129,7 +133,7 @@ public class TestUUIDGenerator {
 	 */
 	@Test
 	public void testGetDate() {
-		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID).");
+		LOGGER.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID).");
 		UUIDGenerator generator = new UUIDGenerator("node");
 		assertNotNull(generator);
 		
@@ -146,7 +150,7 @@ public class TestUUIDGenerator {
 	 */
 	@Test
 	public void testGetDateErrorType() {
-		logger.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID) com UUID diferente do tipo 1.");
+		LOGGER.config("Teste unitário para br.com.codesolver.uuid.UUIDGenerator#getDate(java.util.UUID) com UUID diferente do tipo 1.");
 		assertThrowsExactly(UUIDGeneratorVersionInvalid.class, () -> {
 			UUID uuid = UUID.randomUUID();
 			UUIDGenerator.getDate(uuid);

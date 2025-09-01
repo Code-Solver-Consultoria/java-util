@@ -9,22 +9,50 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.logging.Logger;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Teste unitários para tratamento do {@link br.com.codesolver.util.DateUtil}.
+ * Teste unitários para tratamento do {@link DateUtil}.
  * 
  * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
  * @since 2025-08-26
  */
 public class TestDateUtil {
+
+    /** Log da classe de testes. */
+    private static final Logger LOGGER = Logger.getLogger(TestDateUtil.class.getName());
+
+    /** Construtor padrão. */
+    public TestDateUtil() {
+    }
+
+    /**
+	 * Preparando os testes unitários para {@link DateUtil}.
+	 */
+	@BeforeAll
+	public static void before() {
+		LOGGER.info("Inicializando os testes unitários para DateUtil.");
+	}
+
+	/**
+	 * Finalizando os testes unitários para {@link DateUtil}.
+	 */
+	@AfterAll
+	public static void after() {
+		LOGGER.info("Finalizando os testes unitários para DateUtil.");
+	}
+
 	
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#truncate(java.util.Date)}.
+     * Teste para o método {@link DateUtil#truncate(java.util.Date)}.
      */
     @Test
     public void testTruncate() {
+        LOGGER.config("Testando DateUtil#truncate(java.util.Date).");
         Calendar source		= new GregorianCalendar();
         Date result			= DateUtil.truncate(source.getTime());
         Calendar controller	=  new GregorianCalendar();
@@ -41,20 +69,22 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#truncate(java.util.Date)},
+     * Teste para o método {@link DateUtil#truncate(java.util.Date)},
      * com data nula.
      */
     @Test
     public void testTruncateNull() {
+        LOGGER.config("Testando DateUtil#truncate(java.util.Date) com a data nula.");
         Date result	= DateUtil.truncate(null);
         assertNull(result);;
     }    
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#addDay(java.util.Date, int)}.
+     * Teste para o método {@link DateUtil#addDay(java.util.Date, int)}.
      */
     @Test
     public void testAddDay() {
+        LOGGER.config("Testando DateUtil#addDay(java.util.Date, int).");
         Calendar source		= new GregorianCalendar(2014, Calendar.AUGUST, 6);
         Calendar target		= new GregorianCalendar(2014, Calendar.AUGUST, 7);
         Date result			= DateUtil.addDay(source.getTime(), 1);
@@ -64,10 +94,11 @@ public class TestDateUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#dateToString(java.util.Date)}.
+     * Teste para o método {@link DateUtil#dateToString(java.util.Date)}.
      */
     @Test
     public void testDateToStringDate() {
+        LOGGER.config("Testando DateUtil#dateToString(java.util.Date).");
         Calendar source		= new GregorianCalendar(2013, Calendar.AUGUST, 6);
         String target		= "06/08/2013";
         String result		= DateUtil.dateToString(source.getTime());
@@ -75,10 +106,11 @@ public class TestDateUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#dateToString(java.util.Date, java.util.Locale)}.
+     * Teste para o método {@link DateUtil#dateToString(java.util.Date, java.util.Locale)}.
      */
     @Test
     public void testDateToStringDateLocale() {
+        LOGGER.config("Testando DateUtil#dateToString(java.util.Date, java.util.Locale).");
         Calendar source		= new GregorianCalendar(2013, Calendar.AUGUST, 6);
         String target		= "08-06-2013";
         String result		= DateUtil.dateToString(source.getTime(), Locale.US);
@@ -86,11 +118,12 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#dateToString(java.util.Date, java.util.Locale)},
+     * Teste para o método {@link DateUtil#dateToString(java.util.Date, java.util.Locale)},
      * com um Locale inválido.
      */
     @Test
     public void testDateToStringDateLocaleInvalid() {
+        LOGGER.config("Testando DateUtil#dateToString(java.util.Date, java.util.Locale) com Locale inválido.");
         Calendar source		= new GregorianCalendar(2013, Calendar.AUGUST, 6);
         String target		= "06/08/2013";
         String result		= DateUtil.dateToString(source.getTime(), Locale.CHINA);
@@ -98,10 +131,13 @@ public class TestDateUtil {
     }
     
     /**
-     * Teste method for {@link DateUtil#stringToDate(String)}
+     * Teste para o método {@link DateUtil#stringToDate(String)}.
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
     public void testStringToDateString() throws Exception {
+        LOGGER.config("Testando DateUtil#stringToDate(String).");
     	Calendar target	= new GregorianCalendar(2014, Calendar.JANUARY, 30, 0, 0, 0);
     	String source	= "30/01/2014";
     	Date result		= DateUtil.stringToDate(source);
@@ -109,10 +145,13 @@ public class TestDateUtil {
     }
     
     /**
-     * Teste method for {@link DateUtil#stringToDate(String, Locale)}
+     * Teste para o método {@link DateUtil#stringToDate(String, Locale)}.
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
     public void testStringToDateStringLocale() throws Exception {
+        LOGGER.config("Testando DateUtil#stringToDate(String, Locale).");
     	Calendar target	= new GregorianCalendar(2014, Calendar.JANUARY, 30, 0, 0, 0);
     	String source	= "01-30-2014";
     	Date result		= DateUtil.stringToDate(source, Locale.US);
@@ -120,10 +159,13 @@ public class TestDateUtil {
     }
     
     /**
-     * Teste method for {@link DateUtil#stringToDate(String, Locale)}
+     * Teste para o método {@link DateUtil#stringToDate(String, Locale)}.
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
     public void testStringToDateStringLocaleInvalid() throws Exception {
+        LOGGER.config("Testando DateUtil#stringToDate(String, Locale).");
     	Calendar target	= new GregorianCalendar(2014, Calendar.JANUARY, 30, 0, 0, 0);
     	String source	= "30/01/2014";
     	Date result		= DateUtil.stringToDate(source, Locale.CHINA);
@@ -131,10 +173,11 @@ public class TestDateUtil {
     }      
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#dateTimeToString(java.util.Date)}.
+     * Teste para o método {@link DateUtil#dateTimeToString(java.util.Date)}.
      */
     @Test
     public void testDateTimeToStringDate() {
+        LOGGER.config("Testando DateUtil#dateTimeToString(java.util.Date).");
         Calendar source		= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 04, 13);
         String target		= "06/08/2013 15:04:13";
         String result		= DateUtil.dateTimeToString(source.getTime());
@@ -142,10 +185,11 @@ public class TestDateUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#dateTimeToString(java.util.Date, java.util.Locale)}.
+     * Teste para o método {@link DateUtil#dateTimeToString(java.util.Date, java.util.Locale)}.
      */
     @Test
     public void testDateTimeToStringDateLocale() {
+        LOGGER.config("Testando DateUtil#dateTimeToString(java.util.Date, java.util.Locale).");
         Calendar source		= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 04, 13);
         String target		= "08-06-2013 03:04:13 PM";
         String result		= DateUtil.dateTimeToString(source.getTime(), Locale.US);
@@ -153,11 +197,12 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#dateTimeToString(java.util.Date, java.util.Locale)},
+     * Teste para o método {@link DateUtil#dateTimeToString(java.util.Date, java.util.Locale)}
      * com um Locale inválido.
      */
     @Test
     public void testDateTimeToStringDateLocaleInvalid() {
+        LOGGER.config("Testando DateUtil#dateTimeToString(java.util.Date, java.util.Locale) com Locale inválido.");
         Calendar source		= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 04, 13);
         String target		= "06/08/2013 15:04:13";
         String result		= DateUtil.dateTimeToString(source.getTime(), Locale.GERMANY);
@@ -165,10 +210,13 @@ public class TestDateUtil {
     }    
 
     /**
-     * Teste method for {@link DateUtil#stringToDateTime(String)}
+     * Teste para o método {@link DateUtil#stringToDateTime(String)}.
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
     public void testStringToDateTimeString() throws Exception {
+        LOGGER.config("Testando DateUtil#stringToDateTime(String).");
     	Calendar target	= new GregorianCalendar(2014, Calendar.JANUARY, 30, 15, 27, 34);
     	String source	= "30/01/2014 15:27:34";
     	Date result		= DateUtil.stringToDateTime(source);
@@ -176,10 +224,13 @@ public class TestDateUtil {
     }
     
     /**
-     * Teste method for {@link DateUtil#stringToDateTime(String, Locale)}
+     * Teste para o método {@link DateUtil#stringToDateTime(String, Locale)}.
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
     public void testStringToDateTimeStringLocale() throws Exception {
+        LOGGER.config("Testando DateUtil#stringToDateTime(String, Locale).");
     	Calendar target	= new GregorianCalendar(2014, Calendar.JANUARY, 30, 15, 27, 34);
     	String source	= "01-30-2014 03:27:34 PM";
     	Date result		= DateUtil.stringToDateTime(source, Locale.US);
@@ -187,10 +238,13 @@ public class TestDateUtil {
     }
     
     /**
-     * Teste method for {@link DateUtil#stringToDateTime(String, Locale)}
+     * Teste para o método {@link DateUtil#stringToDateTime(String, Locale)}.
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
     public void testStringToDateTimeStringLocaleInvalid() throws Exception {
+        LOGGER.config("Testando DateUtil#stringToDateTime(String, Locale).");
     	Calendar target	= new GregorianCalendar(2014, Calendar.JANUARY, 30, 15, 27, 34);
     	String source	= "30/01/2014 15:27:34";
     	Date result		= DateUtil.stringToDateTime(source, Locale.CHINA);
@@ -198,44 +252,49 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#isWeekend(java.util.Date)},
+     * Teste para o método {@link DateUtil#isWeekend(java.util.Date)}
      * para sábado.
      */
     @Test
     public void testIsWeekendSaturday() {
+        LOGGER.config("Testando {@link DateUtil#isWeekend(java.util.Date)} para sábado.");
         Calendar source	= new GregorianCalendar(2013, Calendar.AUGUST, 10);
         boolean result	= DateUtil.isWeekend(source.getTime());
         assertTrue(result);
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#isWeekend(java.util.Date)},
+     * Teste para o método {@link DateUtil#isWeekend(java.util.Date)}
      * para domingo
      */
     @Test
     public void testIsWeekendSunday() {
+        LOGGER.config("Testando {@link DateUtil#isWeekend(java.util.Date)} para domingo.");
         Calendar source	= new GregorianCalendar(2013, Calendar.AUGUST, 11);
         boolean result	= DateUtil.isWeekend(source.getTime());
         assertTrue(result);
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#isWeekend(java.util.Date)},
+     * Teste para o método {@link DateUtil#isWeekend(java.util.Date)}
      * para dias normais.
      */
     @Test
     public void testIsWeekendFalse() {
+        LOGGER.config("Testando {@link DateUtil#isWeekend(java.util.Date)} para dias normais.");
         Calendar source	= new GregorianCalendar(2013, Calendar.AUGUST, 6);
         boolean result	= DateUtil.isWeekend(source.getTime());
         assertFalse(result);
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#milisBetween(java.util.Date, java.util.Date)}.
-     * @throws InterruptedException
+     * Teste para o método {@link DateUtil#milisBetween(java.util.Date, java.util.Date)}.
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
-    public void testMilisBetween() throws InterruptedException {
+    public void testMilisBetween() throws Exception {
+        LOGGER.config("Testando DateUtil#milisBetween(java.util.Date, java.util.Date).");
     	Calendar start 	= new GregorianCalendar();
     	Calendar finish	= new GregorianCalendar();
     	finish.setTime(start.getTime());
@@ -245,12 +304,14 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#milisBetween(java.util.Date, java.util.Date)},
+     * Teste para o método {@link DateUtil#milisBetween(java.util.Date, java.util.Date)}
      * com data final menor que a data inicial.
-     * @throws InterruptedException
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
-    public void testMilisBetweenInvalid() throws InterruptedException {
+    public void testMilisBetweenInvalid() throws Exception {
+        LOGGER.config("Testando DateUtil#milisBetween(java.util.Date, java.util.Date) com data final menor que a data inicial.");
     	Calendar start 	= new GregorianCalendar();
     	Calendar finish	= new GregorianCalendar();
     	finish.setTime(start.getTime());
@@ -260,11 +321,13 @@ public class TestDateUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#secondsBetween(java.util.Date, java.util.Date)}.
-     * @throws InterruptedException
+     * Teste para o método {@link DateUtil#secondsBetween(java.util.Date, java.util.Date)}.
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
-    public void testSecondsBetween() throws InterruptedException {
+    public void testSecondsBetween() throws Exception {
+        LOGGER.config("Testando DateUtil#secondsBetween(java.util.Date, java.util.Date).");
         Date start	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         Date finish	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 16).getTime();
         long result	= DateUtil.secondsBetween(start, finish);
@@ -272,12 +335,14 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#secondsBetween(java.util.Date, java.util.Date)},
+     * Teste para o método {@link DateUtil#secondsBetween(java.util.Date, java.util.Date)}
      * sem segundos significativos para cálculo.
-     * @throws InterruptedException
+     *
+     * @throws Exception Falha no teste.
      */
     @Test
-    public void testSecondsBetweenInvalid() throws InterruptedException {
+    public void testSecondsBetweenInvalid() throws Exception {
+        LOGGER.config("Testando DateUtil#secondsBetween(java.util.Date, java.util.Date) sem segundos significativos para cálculo.");
         Date start	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         Date finish	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         long result	= DateUtil.secondsBetween(start, finish);
@@ -285,10 +350,11 @@ public class TestDateUtil {
     }    
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#minutesBetween(java.util.Date, java.util.Date)}.
+     * Teste para o método {@link DateUtil#minutesBetween(java.util.Date, java.util.Date)}.
      */
     @Test
     public void testMinutesBetween() {
+        LOGGER.config("Testando DateUtil#minutesBetween(java.util.Date, java.util.Date).");
         Date start	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         Date finish	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 18, 16).getTime();
         long result	= DateUtil.minutesBetween(start, finish);
@@ -296,11 +362,12 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#minutesBetween(java.util.Date, java.util.Date)},
-     * sem minutos significativos para cálculo
+     * Teste para o método {@link DateUtil#minutesBetween(java.util.Date, java.util.Date)}
+     * sem minutos significativos para cálculo.
      */
     @Test
     public void testMinutesBetweenInvalid() {
+        LOGGER.config("Testando DateUtil#minutesBetween(java.util.Date, java.util.Date) sem minutos significativos para cálculo.");
         Date start	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         Date finish	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 16).getTime();
         long result	= DateUtil.minutesBetween(start, finish);
@@ -308,10 +375,11 @@ public class TestDateUtil {
     }    
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#hoursBetween(java.util.Date, java.util.Date)}.
+     * Teste para o método {@link DateUtil#hoursBetween(java.util.Date, java.util.Date)}.
      */
     @Test
     public void testHoursBetween() {
+        LOGGER.config("Testando DateUtil#hoursBetween(java.util.Date, java.util.Date).");
         Date start	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         Date finish	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 18, 18, 16).getTime();
         long result	= DateUtil.hoursBetween(start, finish);
@@ -319,11 +387,12 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#hoursBetween(java.util.Date, java.util.Date)},
-     * sem horas significativas para cálculo
+     * Teste para o método {@link DateUtil#hoursBetween(java.util.Date, java.util.Date)}
+     * sem horas significativas para cálculo.
      */
     @Test
     public void testHoursBetweenInvalid() {
+        LOGGER.config("Testando DateUtil#hoursBetween(java.util.Date, java.util.Date) sem horas significativas para cálculo.");
         Date start	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         Date finish	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 18, 16).getTime();
         long result	= DateUtil.hoursBetween(start, finish);
@@ -331,10 +400,11 @@ public class TestDateUtil {
     }    
 
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#daysBetween(java.util.Date, java.util.Date)}.
+     * Teste para o método {@link DateUtil#daysBetween(java.util.Date, java.util.Date)}.
      */
     @Test
     public void testDaysBetween() {
+        LOGGER.config("Testando DateUtil#daysBetween(java.util.Date, java.util.Date).");
         Date start	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         Date finish	= new GregorianCalendar(2013, Calendar.AUGUST, 10, 18, 18, 16).getTime();
         long result	= DateUtil.daysBetween(start, finish);
@@ -342,11 +412,12 @@ public class TestDateUtil {
     }
     
     /**
-     * Test method for {@link br.com.codesolver.util.DateUtil#daysBetween(java.util.Date, java.util.Date)},
+     * Teste para o método {@link DateUtil#daysBetween(java.util.Date, java.util.Date)}
      * sem dias significativos para cálculo.
      */
     @Test
     public void testDaysBetweenInvalid() {
+        LOGGER.config("Testando DateUtil#daysBetween(java.util.Date, java.util.Date) sem dias significativos para cálculo..");
         Date start	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 15, 17, 06).getTime();
         Date finish	= new GregorianCalendar(2013, Calendar.AUGUST, 6, 18, 18, 16).getTime();
         long result	= DateUtil.daysBetween(start, finish);

@@ -18,7 +18,7 @@
 		<!-- Endereço do repositório do projeto -->
 		<scm.url>scm:git:ssh://git@github.com:Code-Solver-Consultoria/java-util.git</scm.url>
 
-		<!-- Considerando a complexidade dos utilitários válida. -->
+		<!-- Considerando a complexidade dos utilitários. -->
 	    <jacoco.unit-tests.limit.instruction-ratio>80%</jacoco.unit-tests.limit.instruction-ratio>
 		<jacoco.unit-tests.limit.branch-ratio>56%</jacoco.unit-tests.limit.branch-ratio>
 		<jacoco.unit-tests.limit.class-complexity>40</jacoco.unit-tests.limit.class-complexity>

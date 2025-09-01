@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
 import java.util.logging.Logger;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -16,15 +18,34 @@ import org.junit.jupiter.api.Test;
 public class TestDigesterException {
 	
 	/** Log da classe. */
-	private static final Logger logger = Logger.getLogger(TestDigesterException.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TestDigesterException.class.getName());
+	
+	/** Construtor padrão. */
+	public TestDigesterException() {
+	}
 	
 	/**
+	 * Preparando a classe para teste de {@link DigesterException}.
+	 */
+	@BeforeAll
+	public static void beforeClass() {
+		LOGGER.info("Inicializando os testes para DigesterException.");
+	}
+
+	/**
+	 * Finalizando os testes da classe {@link DigesterException}.
+	 */
+	@AfterAll
+	public static void afterClass() {
+		LOGGER.info("Finalizando os testes para DigesterException.");
+	}
+
+	/**
 	 * Teste unitário para {@link DigesterException#DigesterException()}.
-	 * @throws DigesterException 
 	 */
 	@Test
-	public void testConstructor() throws DigesterException {
-		logger.config("Teste unitário para Teste unitário para DigesterException#DigesterException().");
+	public void testConstructor() {
+		LOGGER.config("Testando DigesterException#DigesterException().");
 		assertThrowsExactly(DigesterException.class, () -> {
 			throw new DigesterException();
 		});
@@ -32,11 +53,10 @@ public class TestDigesterException {
 	
 	/**
 	 * Teste unitário para {@link DigesterException#DigesterException(String)}.
-	 * @throws DigesterException 
 	 */
 	@Test
-	public void testConstructorString() throws DigesterException {
-		logger.config("Teste unitário para Teste unitário para DigesterException#DigesterException(String).");
+	public void testConstructorString() {
+		LOGGER.config("Testando DigesterException#DigesterException(String).");
 		assertThrowsExactly(DigesterException.class, () -> {
 			throw new DigesterException("Erro com mensagem");
 		});
@@ -44,11 +64,10 @@ public class TestDigesterException {
 	
 	/**
 	 * Teste unitário para {@link DigesterException#DigesterException(Throwable)}.
-	 * @throws DigesterException 
 	 */
 	@Test
-	public void testConstructorThrowable() throws DigesterException {
-		logger.config("Teste unitário para Teste unitário para DigesterException#DigesterException(Throwable).");
+	public void testConstructorThrowable() {
+		LOGGER.config("Testando DigesterException#DigesterException(Throwable).");
 		assertThrowsExactly(DigesterException.class, () -> {
 			throw new DigesterException(new Exception());
 		});
@@ -56,11 +75,10 @@ public class TestDigesterException {
 	
 	/**
 	 * Teste unitário para {@link DigesterException#DigesterException(String, Throwable)}.
-	 * @throws DigesterException 
 	 */
 	@Test
-	public void testConstructorStringThrowable() throws DigesterException {
-		logger.config("Teste unitário para Teste unitário para DigesterException#DigesterException(String, Throwable).");
+	public void testConstructorStringThrowable() {
+		LOGGER.config("Testando DigesterException#DigesterException(String, Throwable).");
 		assertThrowsExactly(DigesterException.class, () -> {
 			throw new DigesterException("Erro com mensagem", new Exception());
 		});
@@ -68,11 +86,10 @@ public class TestDigesterException {
 
 	/**
 	 * Teste unitário para {@link DigesterException#DigesterException(String, Throwable, boolean, boolean)}.
-	 * @throws DigesterException 
 	 */
 	@Test
-	public void testConstructorStringThrowableBooleanBoolean() throws DigesterException {
-		logger.config("Teste unitário para Teste unitário para DigesterException#DigesterException(String, Throwable, boolean, boolean).");
+	public void testConstructorStringThrowableBooleanBoolean() {
+		LOGGER.config("Testando DigesterException#DigesterException(String, Throwable, boolean, boolean).");
 		assertThrowsExactly(DigesterException.class, () -> {
 			throw new DigesterException("Erro com mensagem", new Exception(), false, false);
 		});

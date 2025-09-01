@@ -24,7 +24,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 public class TestSimpleSessionManager {
 	
 	/** Log da classe. */
-	private static final Logger logger = Logger.getLogger(TestSimpleSessionManager.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TestSimpleSessionManager.class.getName());
 	
 	/** Parâmetro de identificação de ID de sessão. */
 	private static final Integer ID = 1;
@@ -40,26 +40,36 @@ public class TestSimpleSessionManager {
 	 */
 	private static SimpleSessionManager<SimpleSession> manager;
 
+	/** Construtor padrão. */
+	public TestSimpleSessionManager() {
+	}
+
+	/**
+	 * Preparando os testes unitários para {@link SimpleSessionManager}.
+	 */
 	@BeforeAll
 	public static void beforeClass() {
-		logger.info("Inicializando os testes para SimpleSessionManager.");
+		LOGGER.info("Inicializando os testes para SimpleSessionManager.");
 		manager = new SimpleSessionManager<SimpleSession>(SimpleSession.class);
 	}
 
+	/**
+	 * Finaliznado os testes unitários para {@link SimpleSessionManager}.
+	 */
 	@AfterAll
 	public static void afterClass() {
-		logger.info("Finalizando os testes para SimpleSessionManager.");
+		LOGGER.info("Finalizando os testes para SimpleSessionManager.");
 		manager = null;
 	}
 
 	/**
-	 * Teste para {@link SimpleSessionManager#get(SessionParam, Object)}, 
+	 * Teste para {@link SimpleSessionManager#get(SessionParam, Object)}
 	 * para criar o primeiro objeto de sessão.
 	 */
 	@Test
 	@Order(1)
 	public void testGet() {
-		logger.config("Testando SimpleSessionManager#get(SessionParam, Object).");
+		LOGGER.config("Testando SimpleSessionManager#get(SessionParam, Object).");
 		Session result = manager.get(Session.ID, ID, true);
 		assertNotNull(result);
 		
@@ -82,7 +92,7 @@ public class TestSimpleSessionManager {
 	@Test
 	@Order(2)
 	public void testRemove() {
-		logger.config("Testando SimpleSessionManager#remove(SessionParam, Object).");
+		LOGGER.config("Testando SimpleSessionManager#remove(SessionParam, Object).");
 		Session result = manager.remove(Session.ID, ID);
 		assertNotNull(result);
 		
@@ -96,7 +106,7 @@ public class TestSimpleSessionManager {
 	@Test
 	@Order(3)
 	public void testArray() {
-		logger.config("Testando SimpleSessionManager#array().");
+		LOGGER.config("Testando SimpleSessionManager#array().");
 		Session[] sessions = manager.array();
 		assertNotNull(sessions);
 		assertEquals(sessions.length, 1);
@@ -108,7 +118,7 @@ public class TestSimpleSessionManager {
 	@Test
 	@Order(4)
 	public void testClear() {
-		logger.config("Testando SimpleSessionManager#clear().");
+		LOGGER.config("Testando SimpleSessionManager#clear().");
 		manager.clear();
 	}
 	
@@ -118,7 +128,7 @@ public class TestSimpleSessionManager {
 	@Test
 	@Order(5)
 	public void testSize() {
-		logger.config("Testando SimpleSessionManager#size().");
+		LOGGER.config("Testando SimpleSessionManager#size().");
 		assertEquals(manager.size(), 0);
 	}	
 }

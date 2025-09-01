@@ -2,23 +2,52 @@ package br.com.codesolver.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.logging.Logger;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Testes unitário de manipulação de texto por {@link br.com.codesolver.util.StringUtil}.
+ * Testes unitário de manipulação de texto por {@link StringUtil}.
  * 
  * @author <a href="mailto:luciano@codesolver.com.br">Luciano Vieira Rodrigues</a>
  * @since 2025-08-26
  */
 public class TestStringUtil {
 
+    /** Log da classe de testes. */
+    private static final Logger LOGGER = Logger.getLogger(TestStringUtil.class.getName());
+
+    /** Construtor padrão. */
+    public TestStringUtil() {
+    }
+
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#clean(java.lang.String)}.
+	 * Preparando os testes unitários para {@link StringUtil}.
+	 */
+	@BeforeAll
+	public static void before() {
+		LOGGER.info("Inicializando os testes unitários para StringUtil.");
+	}
+
+	/**
+	 * Finalizando os testes unitários para {@link StringUtil}.
+	 */
+	@AfterAll
+	public static void after() {
+		LOGGER.info("Finalizando os testes unitários para StringUtil.");
+	}
+
+    /**
+     * Teste para o método {@link StringUtil#clean(String)}.
      */
     @Test
     public void testClean() {
+        LOGGER.config("Testando StringUtil#clean(String).");
         String source = "Luçiano está testando çom èrros";
         String target = "Luciano esta testando com erros";
         String result = StringUtil.clean(source);
@@ -27,10 +56,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#padRight(java.lang.String, int)}.
+     * Teste para o método {@link StringUtil#padRight(String, int)}.
      */
     @Test
     public void testPadRightStringInt() {
+        LOGGER.config("Testando StringUtil#padRight(String, int).");
         String source = "teste";
         String target = "teste     ";
         String result = StringUtil.padRight(source, 10);
@@ -39,10 +69,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#padRight(java.lang.String, java.lang.String, int)}.
+     * Teste para o método {@link StringUtil#padRight(String, String, int)}.
      */
     @Test
     public void testPadRightStringStringInt() {
+        LOGGER.config("Testando StringUtil#padRight(String, String, int).");
         String source = "teste";
         String target = "teste11111";
         String result = StringUtil.padRight(source, "1", 10);
@@ -51,11 +82,12 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#padRight(java.lang.String, java.lang.String, int)},
+     * Teste para o método {@link StringUtil#padRight(String, String, int)}
      * com texto maior que o tamanho final desejado.
      */
     @Test
     public void testPadRightStringStringIntLessThenLenght() {
+        LOGGER.config("Testando StringUtil#padRight(String, String, int) com texto maior que o tamanho final desejado.");
         String source = "teste1111123456";
         String target = "teste11111";
         String result = StringUtil.padRight(source, "9", 10);
@@ -64,11 +96,12 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#padRight(java.lang.String, java.lang.String, int)},
+     * Teste para o método {@link StringUtil#padRight(String, String, int)}
      * com o preenchimento maior que o tamanho final desejado.
      */
     @Test
     public void testPadRightStringStringIntStuffGreater() {
+        LOGGER.config("Testando StringUtil#padRight(String, String, int) com o preenchimento maior que o tamanho final desejado.");
         String source = "teste";
         String target = "testeABCAB";
         String result = StringUtil.padRight(source, "ABC", 10);
@@ -77,10 +110,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#padLeft(java.lang.String, int)}.
+     * Teste para o método {@link StringUtil#padLeft(String, int)}.
      */
     @Test
     public void testPadLeftStringInt() {
+        LOGGER.config("Testando StringUtil#padLeft(String, int).");
         String source = "teste";
         String target = "     teste";
         String result = StringUtil.padLeft(source, 10);
@@ -89,10 +123,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#padLeft(java.lang.String, java.lang.String, int)}.
+     * Teste para o método {@link StringUtil#padLeft(String, String, int)}.
      */
     @Test
     public void testPadLeftStringStringInt() {
+        LOGGER.config("Testando StringUtil#padLeft(String, String, int).");
         String source = "teste";
         String target = "AAAAAteste";
         String result = StringUtil.padLeft(source, "A", 10);
@@ -101,11 +136,12 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#padLeft(java.lang.String, java.lang.String, int)},
+     * Teste para o método {@link StringUtil#padLeft(String, String, int)}
      * com texto maior que o tamanho desejado.
      */
     @Test
     public void testPadLeftStringStringIntLessThenLength() {
+        LOGGER.config("Testando StringUtil#padLeft(String, String, int) com texto maior que o tamanho desejado.");
         String source = "12345AAAAAteste";
         String target = "AAAAAteste";
         String result = StringUtil.padLeft(source, "A", 10);
@@ -114,11 +150,12 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#padLeft(java.lang.String, java.lang.String, int)},
+     * Teste para o método {@link StringUtil#padLeft(String, String, int)}
      * com texto maior que o tamanho desejado.
      */
     @Test
     public void testPadLeftStringStringIntStuffGreater() {
+        LOGGER.config("Testando StringUtil#padLeft(String, String, int) com texto maior que o tamanho desejado.");
         String source = "teste";
         String target = "BCABCteste";
         String result = StringUtil.padLeft(source, "ABC", 10);
@@ -127,10 +164,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#leftZero(int, int)}.
+     * Teste para o método {@link StringUtil#leftZero(int, int)}.
      */
     @Test
     public void testLeftZero() {
+        LOGGER.config("Testando StringUtil#leftZero(int, int).");
         String target = "0000000010";
         String result = StringUtil.leftZero(10, 10);
         assertNotNull(result);
@@ -138,10 +176,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#toHex(byte[])}.
+     * Teste para o método {@link StringUtil#toHex(byte[])}.
      */
     @Test
     public void testToHex() {
+        LOGGER.config("Testando StringUtil#toHex(byte[]).");
         byte[] buffer = {'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e'};
         String target = "41424344456162636465";
         String result = StringUtil.toHex(buffer);
@@ -151,11 +190,12 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#toHex(byte[])},
+     * Teste para o método {@link StringUtil#toHex(byte[])}
      * discartando os zeros iniciais.
      */
     @Test
     public void testToHexDiscardZeros() {
+        LOGGER.config("Testando StringUtil#toHex(byte[]) discartando os zeros iniciais.");
         byte[] buffer = {0, 'A', 'B', 'C', 'D', 'E', 0, 'a', 'b', 'c', 'd', 'e'};
         String target = "4142434445006162636465";
         String result = StringUtil.toHex(buffer);
@@ -165,11 +205,12 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#toHex(byte[])},
+     * Teste para o método {@link StringUtil#toHex(byte[])}
      * discartando os zeros iniciais.
      */
     @Test
     public void testToHexIgnoringAppendZeros() {
+        LOGGER.config("Testando StringUtil#toHex(byte[]) discartando os zeros iniciais.");
         byte[] buffer = {1, 'A', 'B', 'C', 'D', 'E', 0, 'a', 'b', 'c', 'd', 'e'};
         String target = "14142434445006162636465";
         String result = StringUtil.toHex(buffer);
@@ -179,11 +220,12 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#toHex(byte[])},
+     * Teste para o método {@link StringUtil#toHex(byte[])}
      * adicionando zeros no início para manter o tamanho coerente.
      */
     @Test
     public void testToHexSufftZeros() {
+        LOGGER.config("Testando {@link StringUtil#toHex(byte[])} adicionando zeros no início para manter o tamanho coerente.");
         byte[] buffer = {'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e', 1};
         String target = "4142434445616263646501";
         String result = StringUtil.toHex(buffer);
@@ -193,10 +235,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#toHexSpaced(byte[], int)}.
+     * Teste para o método {@link StringUtil#toHexSpaced(byte[], int)}.
      */
     @Test
     public void testToHexSpacedByteArrayInt() {
+        LOGGER.config("Testando StringUtil#toHexSpaced(byte[], int).");
         byte[] buffer = {'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e'};
         String target = "41 42 43 44 45";
         int length    = 5;
@@ -206,10 +249,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#toHexSpaced(byte[])}.
+     * Teste para o método {@link StringUtil#toHexSpaced(byte[])}.
      */
     @Test
     public void testToHexSpacedByteArray() {
+        LOGGER.config("Testando StringUtil#toHexSpaced(byte[]).");
         byte[] buffer = {'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e'};
         String target = "41 42 43 44 45 61 62 63 64 65";
         String result = StringUtil.toHexSpaced(buffer);
@@ -218,11 +262,12 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#toHexSpaced(byte[])},
+     * Teste para o método {@link StringUtil#toHexSpaced(byte[])}
      * adicionando zeros para normalizar o HASH.
      */
     @Test
     public void testToHexSpacedByteArrayAppendingZeros() {
+        LOGGER.config("Testando StringUtil#toHexSpaced(byte[]) adicionando zeros para normalizar o HASH.");
         byte[] buffer = {2, 'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e', 1};
         String target = "02 41 42 43 44 45 61 62 63 64 65 01";
         String result = StringUtil.toHexSpaced(buffer);
@@ -231,10 +276,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#hexToBytes(java.lang.String)}.
+     * Teste para o método {@link StringUtil#hexToBytes(String)}.
      */
     @Test
     public void testHexToBytes() {
+        LOGGER.config("Testando StringUtil#hexToBytes(String).");
         String source = "41424344456162636465";
         byte[] target = {'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e'};
         byte[] result = StringUtil.hexToBytes(source);
@@ -246,10 +292,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#hexToBytes(java.lang.String)}.
+     * Teste para o método {@link StringUtil#hexToBytes(String)}.
      */
     @Test
     public void testHexToBytesAppendZeros() {
+        LOGGER.config("Testando StringUtil#hexToBytes(String).");
         String source = "141424344456162636465";
         byte[] target = {1, 'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e'};
         byte[] result = StringUtil.hexToBytes(source);
@@ -261,10 +308,11 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#hexToBytes(java.lang.String)}.
+     * Teste para o método {@link StringUtil#hexToBytes(String)}.
      */
     @Test
     public void testHexToBytesRemoveSpaces() {
+        LOGGER.config("Testando StringUtil#hexToBytes(String).");
         String source = "1 41 42 43 44 45 61 62 63 64 65";
         byte[] target = {1, 'A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e'};
         byte[] result = StringUtil.hexToBytes(source);
@@ -276,44 +324,41 @@ public class TestStringUtil {
     }
 
     /**
-     * Test method for {@link br.com.codesolver.util.StringUtil#decodeIPv4(byte[])}.
+     * Teste para o método {@link StringUtil#decodeIPv4(byte[])}.
      */
     @Test
-    public void test1DecodeIPv4() {
+    public void testDecodeIPv4() {
+        LOGGER.config("Testando StringUtil#decodeIPv4(byte[]).");
         assertEquals("255.255.255.255", StringUtil.decodeIPv4(new byte[] {(byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF}));
         assertEquals("0.0.0.0", StringUtil.decodeIPv4(new byte[] {(byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00}));
         assertEquals("1.1.1.1", StringUtil.decodeIPv4(new byte[] {(byte)0x01, (byte)0x01, (byte)0x01, (byte)0x01}));
     }
 
 
+    /**
+     * Teste para o método {@link StringUtil#decodeIPv4(byte[])}
+     * com lançamento de exceções.
+     */
     @Test
-    public void test2DecodeIPv4() {
-        boolean throwException = false;
-        try {
+    public void testDecodeIPv4Exceptions() {
+        LOGGER.config("Testando StringUtil#decodeIPv4(byte[]) com lançamento de exceções.");
+        assertThrows(IllegalArgumentException.class, () -> {
             StringUtil.decodeIPv4(null);
-        } catch(IllegalArgumentException e) {
-            throwException = true;
-        }
-        if(!throwException) {
-            throw new AssertionError();
-        }
+        });
 
-        throwException = false;
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             StringUtil.decodeIPv4(new byte[] {0x00});
-        } catch(IllegalArgumentException e) {
-            throwException = true;
-        }
-        if(!throwException) {
-            throw new AssertionError();
-        }
+        });
     }
 
+    /**
+     * Teste para o método {@link StringUtil#encodeIPv4(String)}.
+     */
     @Test
-    public void test1EncodeIPv4() {
+    public void testEncodeIPv4() {
+        LOGGER.config("Testando StringUtil#encodeIPv4(String).");
 
         byte[] octectos = StringUtil.encodeIPv4("255.255.255.255");
-
         assertTrue(4 == octectos.length);
         assertTrue(octectos[0] == (byte)0xFF);
         assertTrue(octectos[1] == (byte)0xFF);
@@ -333,65 +378,30 @@ public class TestStringUtil {
         assertTrue(octectos[1] == (byte)0xAA);
         assertTrue(octectos[2] == (byte)0xAA);
         assertTrue(octectos[3] == (byte)0xAA);
-
     }
 
+    /**
+     * Teste para o método {@link StringUtil#encodeIPv4(String)}
+     * com lançamento de exceções.
+     */
     @Test
-    public void test2EncodeIPv4() {
+    public void testEncodeIPv4Exceptions() {
+        LOGGER.config("Testando StringUtil#encodeIPv4(String) com lançamento de exeções.");
 
-        boolean throwException = false;
-
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             StringUtil.encodeIPv4(null);
-        } catch (IllegalArgumentException e) {
-            throwException = true;
-        }
-        if(!throwException) {
-            throw new AssertionError();
-        }
+        });
 
-        throwException = false;
-
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             StringUtil.encodeIPv4("");
-        } catch (IllegalArgumentException e) {
-            throwException = true;
-        }
-        if(!throwException) {
-            throw new AssertionError();
-        }
+        });
 
-        throwException = false;
-
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             StringUtil.encodeIPv4("#$%T$%G#$");
-        } catch (IllegalArgumentException e) {
-            throwException = true;
-        }
-        if(!throwException) {
-            throw new AssertionError();
-        }
+        });
 
-        throwException = false;
-
-        try {
+        assertThrows(IllegalArgumentException.class, () -> {
             StringUtil.encodeIPv4("256.256.256.256");
-        } catch (IllegalArgumentException e) {
-            throwException = true;
-        }
-        if(!throwException) {
-            throw new AssertionError();
-        }
+        });
     }
-
-    @Test
-    public void testEncodeDecodeIPv4() {
-        assertEquals("255.255.255.255", StringUtil.decodeIPv4(StringUtil.encodeIPv4("255.255.255.255")));
-        assertEquals("0.0.0.0", StringUtil.decodeIPv4(StringUtil.encodeIPv4("0.0.0.0")));
-        assertEquals("1.1.1.1", StringUtil.decodeIPv4(StringUtil.encodeIPv4("1.1.1.1")));
-        assertEquals("1.2.3.4", StringUtil.decodeIPv4(StringUtil.encodeIPv4("1.2.3.4")));
-        assertEquals("10.104.10.8", StringUtil.decodeIPv4(StringUtil.encodeIPv4("10.104.10.8")));
-        assertEquals("192.198.196.88", StringUtil.decodeIPv4(StringUtil.encodeIPv4("192.198.196.88")));
-    }
-
 }

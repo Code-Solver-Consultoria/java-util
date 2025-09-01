@@ -22,7 +22,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 public class TestSessionParam {
 
 	/** Log da classe. */
-	private static final Logger logger = Logger.getLogger(TestSessionParam.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TestSessionParam.class.getName());
 	
 	/**
 	 * Nome do parâmetro para teste.
@@ -33,22 +33,26 @@ public class TestSessionParam {
 	 * Objeto de teste.
 	 */
 	private static SessionParam<String> param;
+
+	/** Construtor padrão. */
+	public TestSessionParam() {
+	}
 	
 	/**
-	 * Preparando a classe para teste.
+	 * Preparando a classe para teste de {@link SessionParam}.
 	 */
 	@BeforeAll
 	public static void beforeClass() {
-		logger.info("Preparando os testes para SessionParam.");
+		LOGGER.info("Inicializando os testes para SessionParam.");
 		param	= null;
 	}
 
 	/**
-	 * Finalizando os testes da classe.
+	 * Finalizando os testes da classe {@link SessionParam}.
 	 */
 	@AfterAll
 	public static void afterClass() {
-		logger.info("Finalizando os testes para SessionParam.");
+		LOGGER.info("Finalizando os testes para SessionParam.");
 		param	= null;
 	}
 	
@@ -58,7 +62,7 @@ public class TestSessionParam {
 	@Test
 	@Order(1)
 	public void testConstructor() {
-		logger.config("Testando SessionParam#SessionParam(String)");
+		LOGGER.config("Testando SessionParam#SessionParam(String)");
 		param = new SessionParam<String>(NAME);
 		assertNotNull(param);
 	}
@@ -69,7 +73,7 @@ public class TestSessionParam {
 	 */
 	@Test
 	public void testConstructorNull() {
-		logger.config("Testando SessionParam#SessionParam(String), com parâmetro nulo");
+		LOGGER.config("Testando SessionParam#SessionParam(String), com parâmetro nulo");
 		assertThrowsExactly(SessionRuntimeException.class, () -> {
 			new SessionParam<Integer>(null);
 		});
@@ -81,7 +85,7 @@ public class TestSessionParam {
 	 */
 	@Test
 	public void testConstructorEmpty() {
-		logger.config("Testando SessionParam#SessionParam(String), com parâmetro vazio.");
+		LOGGER.config("Testando SessionParam#SessionParam(String), com parâmetro vazio.");
 		assertThrowsExactly(SessionRuntimeException.class, () -> {
 			new SessionParam<String>("");
 		});
@@ -94,7 +98,7 @@ public class TestSessionParam {
 	@Test
 	@Order(2)
 	public void testConstructorRepeated() {
-		logger.config("Testando SessionParam#SessionParam(String), com parâmetro repetido.");
+		LOGGER.config("Testando SessionParam#SessionParam(String), com parâmetro repetido.");
 		assertThrowsExactly(SessionRuntimeException.class, () -> {
 			new SessionParam<String>(NAME);
 		});
@@ -106,7 +110,7 @@ public class TestSessionParam {
 	@Test
 	@Order(2)
 	public void testValidate() {
-		logger.config("Testando SessionParam#validate(Object).");
+		LOGGER.config("Testando SessionParam#validate(Object).");
 		param.validate("Luciano");
 	}
 	
@@ -116,7 +120,7 @@ public class TestSessionParam {
 	@Test
 	@Order(2)
 	public void testValidateNull() {
-		logger.config("Testando SessionParam#validate(Object).");
+		LOGGER.config("Testando SessionParam#validate(Object).");
 		assertThrowsExactly(SessionRuntimeException.class, () -> {
 			param.validate(null);
 		});

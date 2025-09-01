@@ -17,22 +17,26 @@ import org.junit.jupiter.api.Test;
 public class TestUUIDGeneratorVersionInvalid {
 	
 	/** Log da classe. */
-	private static final Logger logger = Logger.getLogger(TestUUIDGeneratorVersionInvalid.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(TestUUIDGeneratorVersionInvalid.class.getName());
 
-	/**
-	 * Preparando os testes unitários para TestUUIDGeneratorVersionInvalid.
-	 */
-	@BeforeAll
-	public static void before() {
-		logger.info("Preparando os testes unitários para TestUUIDGeneratorVersionInvalid.");
+	/** Construtor padrão. */
+	public TestUUIDGeneratorVersionInvalid() {
 	}
 
 	/**
-	 * Finalizando os testes unitários para TestUUIDGeneratorVersionInvalid.
+	 * Preparando os testes unitários para {@link UUIDGeneratorVersionInvalid}..
+	 */
+	@BeforeAll
+	public static void before() {
+		LOGGER.info("Preparando os testes unitários para UUIDGeneratorVersionInvalid.");
+	}
+
+	/**
+	 * Finalizando os testes unitários para {@link UUIDGeneratorVersionInvalid}..
 	 */
 	@AfterAll
 	public static void after() {
-		logger.info("Finalizando os testes unitários para TestUUIDGeneratorVersionInvalid.");
+		LOGGER.info("Finalizando os testes unitários para UUIDGeneratorVersionInvalid.");
 	}
 	
 	/**
@@ -40,7 +44,7 @@ public class TestUUIDGeneratorVersionInvalid {
 	 */
 	@Test
 	public void testConstructor() {
-		logger.config("Teste unitário para UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid().");
+		LOGGER.config("Testando UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid().");
 		assertThrowsExactly(UUIDGeneratorVersionInvalid.class, () -> {
 			throw new UUIDGeneratorVersionInvalid();
 		});
@@ -51,7 +55,7 @@ public class TestUUIDGeneratorVersionInvalid {
 	 */
 	@Test
 	public void testConstructorString() {
-		logger.config("Teste unitário para UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid(String).");
+		LOGGER.config("Testando UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid(String).");
 		assertThrowsExactly(UUIDGeneratorVersionInvalid.class, () -> {
 			throw new UUIDGeneratorVersionInvalid("Erro com mensagem");
 		});
@@ -62,7 +66,7 @@ public class TestUUIDGeneratorVersionInvalid {
 	 */
 	@Test
 	public void testConstructorThrowable() {
-		logger.config("Teste unitário para UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid(Throwable).");
+		LOGGER.config("Testando UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid(Throwable).");
 		assertThrowsExactly(UUIDGeneratorVersionInvalid.class, () -> {
 			throw new UUIDGeneratorVersionInvalid(new Exception());
 		});
@@ -73,7 +77,7 @@ public class TestUUIDGeneratorVersionInvalid {
 	 */
 	@Test
 	public void testConstructorStringThrowable() {
-		logger.config("Teste unitário para UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid(String, Throwable).");
+		LOGGER.config("Testando UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid(String, Throwable).");
 		assertThrowsExactly(UUIDGeneratorVersionInvalid.class, () -> {
 			throw new UUIDGeneratorVersionInvalid("Erro com mensagem", new Exception());
 		});
@@ -84,7 +88,7 @@ public class TestUUIDGeneratorVersionInvalid {
 	 */
 	@Test
 	public void testConstructorStringThrowableBooleanBoolean() {
-		logger.config("Teste unitário para UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid(String, Throwable, boolean, boolean).");
+		LOGGER.config("Testando UUIDGeneratorVersionInvalid#UUIDGeneratorVersionInvalid(String, Throwable, boolean, boolean).");
 		assertThrowsExactly(UUIDGeneratorVersionInvalid.class, () -> {
 			throw new UUIDGeneratorVersionInvalid("Erro com mensagem", new Exception(), false, false);
 		});

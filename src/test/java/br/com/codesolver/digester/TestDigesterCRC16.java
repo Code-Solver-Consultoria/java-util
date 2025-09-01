@@ -3,6 +3,10 @@ package br.com.codesolver.digester;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.logging.Logger;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -12,15 +16,41 @@ import org.junit.jupiter.api.Test;
  * @since 2025-08-26
  */
 public class TestDigesterCRC16 {
+
+	/** Log da classe. */
+	private static final Logger LOGGER = Logger.getLogger(TestDigesterCRC16.class.getName());
 	
+	/** Matriz de bytes para controle dos testes unitários. */
 	private static final byte[] BUFFER = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 	
+	/** Valor de CRC conhecido. */
 	private static final short CRC = 27649;
 	
+	/** HASH do CRC conhecido. */
 	private static final String HASH = "6c01";
+
+	/** Construtor padrão. */
+	public TestDigesterCRC16() {
+	}
 	
 	/**
-	 * Test method for {@link br.com.codesolver.digester.DigesterCRC16#DigesterCRC16()}.
+	 * Preparando a classe para teste de {@link DigesterCRC16}.
+	 */
+	@BeforeAll
+	public static void beforeClass() {
+		LOGGER.info("Inicializando os testes para DigesterCRC16.");
+	}
+
+	/**
+	 * Finalizando os testes da classe {@link DigesterCRC16}.
+	 */
+	@AfterAll
+	public static void afterClass() {
+		LOGGER.info("Finalizando os testes para DigesterCRC16.");
+	}
+	
+	/**
+	 * Test method for {@link DigesterCRC16#DigesterCRC16()}.
 	 */
 	@Test
 	public void testDigesterCRC16() {
@@ -29,7 +59,7 @@ public class TestDigesterCRC16 {
 	}
 
 	/**
-	 * Test method for {@link br.com.codesolver.digester.DigesterCRC16#reset()}.
+	 * Test method for {@link DigesterCRC16#reset()}.
 	 */
 	@Test
 	public void testReset() {
@@ -41,7 +71,7 @@ public class TestDigesterCRC16 {
 	}
 
 	/**
-	 * Test method for {@link br.com.codesolver.digester.DigesterCRC16#getValue()}.
+	 * Test method for {@link DigesterCRC16#getValue()}.
 	 */
 	@Test
 	public void testGetValue() {
@@ -55,7 +85,7 @@ public class TestDigesterCRC16 {
 	}
 
 	/**
-	 * Test method for {@link br.com.codesolver.digester.DigesterCRC16#digest()}.
+	 * Test method for {@link DigesterCRC16#digest()}.
 	 */
 	@Test
 	public void testDigest() {
