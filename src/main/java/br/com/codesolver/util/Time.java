@@ -165,9 +165,9 @@ public class Time implements Serializable {
 		Matcher matcher = PATTERN.matcher(value); 	
 		if (matcher.matches()) {
 			String[] parts	= value.split(":");
-			int hour		= Integer.valueOf(parts[0]);
-			int minute		= Integer.valueOf(parts[1]);
-			int second		= Integer.valueOf(parts[2]);
+			int hour		= Integer.parseInt(parts[0]);
+			int minute		= Integer.parseInt(parts[1]);
+			int second		= Integer.parseInt(parts[2]);
 			result			= new Time(hour, minute, second);
 		} else {
 			throw new TimeRuntimeException(
