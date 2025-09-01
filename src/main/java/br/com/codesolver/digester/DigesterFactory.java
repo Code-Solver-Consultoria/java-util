@@ -18,6 +18,7 @@ public final class DigesterFactory {
 	/**
 	 * Recupera o processador de HASH adequando para o algorítimo.
 	 *
+	 * @param <T> Um descendente de {@link Digester}.
 	 * @param algorithm {@link AlgorithmType}.
 	 * @return {@link Digester}.
 	 * @throws DigesterException Algorítimo inválido.
