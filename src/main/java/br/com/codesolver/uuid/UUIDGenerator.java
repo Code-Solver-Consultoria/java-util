@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * Gerador de UUID tipo 1 (time based). É um número de 128 bits, conforme a estrutura:
  *
@@ -113,6 +115,7 @@ public class UUIDGenerator {
     /**
      * Número randômico para gerar a sequência do UUID.
      */
+    @SuppressFBWarnings("DMI_RANDOM_USED_ONLY_ONCE")
     private static final short CLOCK = (short) new Random(System.currentTimeMillis()).nextInt();
 
     /** Máscara para remover o último byte na formação do número MSB. */
@@ -228,6 +231,7 @@ public class UUIDGenerator {
      * @return long
      */
     @SuppressWarnings("checkstyle:MagicNumber")
+    @SuppressFBWarnings("DMI_RANDOM_USED_ONLY_ONCE")
     private long makeLSB() {
         long result			= 0L;
         Random random		= new Random();

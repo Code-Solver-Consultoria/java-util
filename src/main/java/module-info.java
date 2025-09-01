@@ -13,4 +13,5 @@ module br.com.codesolver.util {
 	requires java.base;
 	requires java.desktop;
 	requires java.logging;
+	requires com.github.spotbugs.annotations;
 }
