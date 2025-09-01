@@ -50,7 +50,7 @@ public class TestDigesterCRC16 {
 	}
 	
 	/**
-	 * Test method for {@link DigesterCRC16#DigesterCRC16()}.
+	 * Teste para o método {@link DigesterCRC16#DigesterCRC16()}.
 	 */
 	@Test
 	public void testDigesterCRC16() {
@@ -59,7 +59,7 @@ public class TestDigesterCRC16 {
 	}
 
 	/**
-	 * Test method for {@link DigesterCRC16#reset()}.
+	 * Teste para o método {@link DigesterCRC16#reset()}.
 	 */
 	@Test
 	public void testReset() {
@@ -71,7 +71,7 @@ public class TestDigesterCRC16 {
 	}
 
 	/**
-	 * Test method for {@link DigesterCRC16#getValue()}.
+	 * Teste para o método {@link DigesterCRC16#getValue()}.
 	 */
 	@Test
 	public void testGetValue() {
@@ -85,7 +85,7 @@ public class TestDigesterCRC16 {
 	}
 
 	/**
-	 * Test method for {@link DigesterCRC16#digest()}.
+	 * Teste para o método {@link DigesterCRC16#digest()}.
 	 */
 	@Test
 	public void testDigest() {

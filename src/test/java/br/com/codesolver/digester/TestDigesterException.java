@@ -41,7 +41,7 @@ public class TestDigesterException {
 	}
 
 	/**
-	 * Teste unitário para {@link DigesterException#DigesterException()}.
+	 * Teste para o método {@link DigesterException#DigesterException()}.
 	 */
 	@Test
 	public void testConstructor() {
@@ -52,7 +52,7 @@ public class TestDigesterException {
 	}
 	
 	/**
-	 * Teste unitário para {@link DigesterException#DigesterException(String)}.
+	 * Teste para o método {@link DigesterException#DigesterException(String)}.
 	 */
 	@Test
 	public void testConstructorString() {
@@ -63,7 +63,7 @@ public class TestDigesterException {
 	}
 	
 	/**
-	 * Teste unitário para {@link DigesterException#DigesterException(Throwable)}.
+	 * Teste para o método {@link DigesterException#DigesterException(Throwable)}.
 	 */
 	@Test
 	public void testConstructorThrowable() {
@@ -74,7 +74,7 @@ public class TestDigesterException {
 	}
 	
 	/**
-	 * Teste unitário para {@link DigesterException#DigesterException(String, Throwable)}.
+	 * Teste para o método {@link DigesterException#DigesterException(String, Throwable)}.
 	 */
 	@Test
 	public void testConstructorStringThrowable() {
@@ -85,7 +85,7 @@ public class TestDigesterException {
 	}
 
 	/**
-	 * Teste unitário para {@link DigesterException#DigesterException(String, Throwable, boolean, boolean)}.
+	 * Teste para o método {@link DigesterException#DigesterException(String, Throwable, boolean, boolean)}.
 	 */
 	@Test
 	public void testConstructorStringThrowableBooleanBoolean() {
