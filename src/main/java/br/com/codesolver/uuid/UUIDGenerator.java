@@ -116,7 +116,6 @@ public class UUIDGenerator {
     /**
      * Número randômico para gerar a sequência do UUID.
      */
-    @SuppressFBWarnings("DMI_RANDOM_USED_ONLY_ONCE")
     private static final short CLOCK = (short) new Random(System.currentTimeMillis()).nextInt();
 
     /** Máscara para remover o último byte na formação do número MSB. */
