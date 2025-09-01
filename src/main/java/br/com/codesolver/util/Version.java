@@ -187,9 +187,11 @@ public class Version implements Serializable {
 	 *
 	 * @param pack Pacote com informações.
 	 * @throws VersionRuntimeException Falha na decomposição da versão extraída do pacote.
-	 * @throws NullPointerException    Versão inválida.
 	 */
 	public void decode(Package pack) {
+		if (pack == null) {
+			throw new VersionRuntimeException("As informações de versão não foram fornecidas.");
+		}
 		try {
 			name = pack.getSpecificationTitle();
 			String[] values = pack.getImplementationVersion().split("\\.");
@@ -205,9 +207,6 @@ public class Version implements Serializable {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			throw new VersionRuntimeException(
 					"Formato de versão incorreto. Deve possuir 3 identificadores separados por ponto (.).", 
-					e);
-		} catch (NullPointerException e) {
-			throw new VersionRuntimeException("Nenhuma informação pode ser extraída do pacote fornecido.", 
 					e);
 		}
 	}

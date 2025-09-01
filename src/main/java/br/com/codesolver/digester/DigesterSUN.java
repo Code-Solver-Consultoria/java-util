@@ -1,5 +1,6 @@
 package br.com.codesolver.digester;
 
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.MessageFormat;
@@ -65,7 +66,7 @@ public class DigesterSUN implements Digester {
      * @return HASH.
      */
     public String parse(String value) {
-        return parse(value.getBytes());
+        return parse(value.getBytes(Charset.defaultCharset()));
     }
 
     /**
@@ -88,7 +89,7 @@ public class DigesterSUN implements Digester {
      * @return Verdadeiro se o HASH coincidir.
      */
     public boolean verify(String value, String hash) {
-        return verify(value.getBytes(), hash);
+        return verify(value.getBytes(Charset.defaultCharset()), hash);
     }
 
     /**

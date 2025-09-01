@@ -38,12 +38,12 @@ public class SessionParam<T> implements Serializable {
 	 */
 	public SessionParam(String name) {
 		if (name == null) {
-			String message = MessageFormat.format("Parâmetro não pode ser nulo.", name);
+			String message = "Parâmetro não pode ser nulo.";
 			LOGGER.severe(message);
 			throw new SessionRuntimeException(message);
 		} 
 		if (name.isEmpty()) {
-			String message = MessageFormat.format("Parâmetro está vazio.", name);
+			String message = "Parâmetro está vazio.";
 			LOGGER.severe(message);
 			throw new SessionRuntimeException(message);
 		} 
