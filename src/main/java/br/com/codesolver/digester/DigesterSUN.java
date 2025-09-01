@@ -27,7 +27,7 @@ public class DigesterSUN implements Digester {
      * @param algorithm {@link AlgorithmType}.
      * @throws DigesterException Algorítimo inválido.
      */
-    public DigesterSUN(AlgorithmType algorithm) {
+    DigesterSUN(AlgorithmType algorithm) {
         String message;
         if (algorithm == null) {
             message = "Algoritimo não pode ser nulo.";

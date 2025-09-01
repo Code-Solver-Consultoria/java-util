@@ -181,7 +181,7 @@ public class UUIDGenerator {
         timeMidHigh |= MASK_UUID_TYPE_1; 		// Configura o UUID para o tipo 1 (time-based)
         // Reconstruindo o número:
         result = (long) timeMidHigh;
-        result = (result << Integer.SIZE) >>> Integer.SIZE; 		// Removendo o sinal...
+        result = result << Integer.SIZE >>> Integer.SIZE; 		// Removendo o sinal...
         result = ((long) timeLow) << Integer.SIZE | result;
         return result;
     }
@@ -239,7 +239,7 @@ public class UUIDGenerator {
         buffer.put(node.getBytes());
         buffer.flip();
         result  = buffer.getLong();
-        result  = (result << 2) >>> 2; 	    // remove dois bits MSB
+        result  = result << 2 >>> 2; 	    // remove dois bits MSB
         result |= 2L << 62; 				// Configura os dois bits MSB para 10
         return result;
     }

@@ -48,7 +48,7 @@ public class DigesterCRC16 implements DigesterCRC {
 	private int crc;
 
 	/** Construtor padrão. */
-	public DigesterCRC16() {
+	DigesterCRC16() {
 		crc = 0;
 	}
 

@@ -106,7 +106,7 @@ public final class StringUtil {
      * @return Texto com espaços em branco a direita.
      */
     public static String padRight(String text, int length) {
-        return StringUtil.padRight(text, TEXT_SPACE, length); 
+        return padRight(text, TEXT_SPACE, length); 
     }
 
     /**
@@ -142,7 +142,7 @@ public final class StringUtil {
      * @return Texto com espacos em branco a direita.
      */
     public static String padLeft(String text, int length) {
-        return StringUtil.padLeft(text, TEXT_SPACE, length); 
+        return padLeft(text, TEXT_SPACE, length); 
     }
 
     /**
@@ -184,7 +184,7 @@ public final class StringUtil {
      */
     public static String leftZero(int value, int length) {
         String result = String.valueOf(value);
-        result = StringUtil.padLeft(result, TEXT_ZERO, length); 
+        result = padLeft(result, TEXT_ZERO, length); 
         return result;
     }
 
