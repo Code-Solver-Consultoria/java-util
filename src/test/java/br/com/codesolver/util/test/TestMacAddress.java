@@ -130,14 +130,22 @@ public class TestMacAddress {
         });
     }
 
+    /**
+     * Teste para o método {@link MacAddress#hashCode()}.
+     */
     @Test
     void testHashCode() {
+        LOGGER.config("Testando MacAddress#hashCode().");
         MacAddress address = new MacAddress();
         assertTrue(address.hashCode() > 0);
     }
 
+    /**
+     * Teste para o método {@link MacAddress#setOctect(int, byte)}.
+     */
     @Test
     void testSetOctect() {
+        LOGGER.config("Testando MacAddress#setOctect(int, byte).");
         MacAddress address = new MacAddress();
         for (int i = 0; i < MacAddress.SIZE; i++) {
             address.setOctect(i, MAC_ADDRESS[i]);
@@ -154,8 +162,12 @@ public class TestMacAddress {
         });
     }
 
+    /**
+     * Teste para o método {@link MacAddress#toString()}.
+     */
     @Test
     void testToString() {
+        LOGGER.config("Testando MacAddress#toString().");
         MacAddress address = createWithAddress();
         assertEquals(MAX_ADDRESS_TEXT, address.toString());
     }
