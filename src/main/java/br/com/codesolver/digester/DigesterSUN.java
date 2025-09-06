@@ -26,24 +26,11 @@ public class DigesterSUN implements Digester {
      * Prepara o componente de calculo de HASH.
      *
      * @param algorithm {@link AlgorithmType}.
-     * @throws DigesterException Algorítimo inválido.
+     * @throws NoSuchAlgorithmException Algorítimo inválido.
      */
-    DigesterSUN(AlgorithmType algorithm) {
-        String message;
-        if (algorithm == null) {
-            message = "Algoritimo não pode ser nulo.";
-            LOGGER.severe(message);
-            throw new DigesterException(message);
-        }
-        message = MessageFormat.format("Preparando o algoritimo {0}.", algorithm.name());
-        LOGGER.fine(message);
-        try {
-            digester = MessageDigest.getInstance(algorithm.getValue());
-        } catch (NoSuchAlgorithmException e) {
-            message = MessageFormat.format("Algoritimo {0} inválido.", algorithm.name());
-            LOGGER.severe(message);
-            throw new DigesterException(message, e);
-        }
+    DigesterSUN(AlgorithmType algorithm) throws NoSuchAlgorithmException {
+        LOGGER.fine(MessageFormat.format("Preparando o algoritimo {0}.", algorithm.name()));
+        digester = MessageDigest.getInstance(algorithm.getValue());
     }
 
     /**

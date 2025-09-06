@@ -1,5 +1,9 @@
 package br.com.codesolver.digester;
 
+import java.security.NoSuchAlgorithmException;
+import java.text.MessageFormat;
+import java.util.logging.Logger;
+
 /**
  * Cria o processador de HASH adequado para o algorítimo informado.
  *
@@ -8,6 +12,9 @@ package br.com.codesolver.digester;
  * @see AlgorithmType
  */
 public final class DigesterFactory {
+
+	/** Log da classe. */
+	private static final Logger LOGGER = Logger.getLogger(DigesterFactory.class.getName());
 
 	/** 
 	 * Construtor oculto.
@@ -25,14 +32,25 @@ public final class DigesterFactory {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Digester> T getInstance(AlgorithmType algorithm) {
+		if (algorithm == null) {
+            String message = "Algoritimo não pode ser nulo.";
+            LOGGER.severe(message);
+            throw new DigesterException(message);
+        }
 		T result = null;
-		switch (algorithm) {
-			case CRC16: 
-				result = (T) new DigesterCRC16();
-				break;
-			default:
-				result = (T) new DigesterSUN(algorithm);
-		}
+		try {
+			switch (algorithm) {
+				case CRC16: 
+					result = (T) new DigesterCRC16();
+					break;
+				default:
+					result = (T) new DigesterSUN(algorithm);
+			}
+		} catch (NoSuchAlgorithmException e) {
+			String message = MessageFormat.format("Algoritimo {0} inválido.", algorithm.name());
+            LOGGER.severe(message);
+            throw new DigesterException(message, e);
+		} 
 		return result;
 	}
 }
