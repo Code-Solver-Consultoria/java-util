@@ -179,7 +179,7 @@ public class Version implements Serializable {
 
 	@Override
 	public String toString() {
-		return StringUtil.toString(this);
+		return String.format("%s-%s.%s.%s", name, major, minor, build);
 	}
 
 	/**
@@ -192,22 +192,16 @@ public class Version implements Serializable {
 		if (pack == null) {
 			throw new VersionRuntimeException("As informações de versão não foram fornecidas.");
 		}
-		try {
-			name = pack.getSpecificationTitle();
-			String[] values = pack.getImplementationVersion().split("\\.");
-			if (values.length >= VERSION_MAJOR_SIZE) {
-				major = values[0];
-			}
-			if (values.length >= VERSION_MINOR_SIZE) {
-				minor = values[1];
-			}
-			if (values.length >= VERSION_BUILD_SIZE) {
-				build = values[2];
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new VersionRuntimeException(
-					"Formato de versão incorreto. Deve possuir 3 identificadores separados por ponto (.).", 
-					e);
+		name = pack.getSpecificationTitle();
+		String[] values = pack.getImplementationVersion().split("\\.");
+		if (values.length >= VERSION_MAJOR_SIZE) {
+			major = values[0];
+		}
+		if (values.length >= VERSION_MINOR_SIZE) {
+			minor = values[1];
+		}
+		if (values.length >= VERSION_BUILD_SIZE) {
+			build = values[2];
 		}
 	}
 }

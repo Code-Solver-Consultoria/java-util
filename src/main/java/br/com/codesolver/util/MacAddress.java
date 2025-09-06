@@ -16,11 +16,11 @@ public class MacAddress implements Serializable {
 	/** Mensagem de erro para índice de octeto. */
 	private static final String OCTET_RANGE_ERROR = "Índice %d fora do range válido para um octeto.";
 
-	/** Tamanho da estrutura de dados do MacAddress. */
-	private static final int SIZE = 6;
-
 	/** Menor índice possível para um octeto. */
 	private static final int ZERO = 0;
+
+	/** Tamanho da estrutura de dados do MacAddress. */
+	public static final int SIZE = 6;
 
 	/** Lista dos octetos que formam o MacAddress. */
 	private final byte[] octets;
