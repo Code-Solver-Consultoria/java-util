@@ -1,4 +1,4 @@
-package br.com.codesolver.session;
+package br.com.codesolver.session.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -13,6 +13,11 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+
+import br.com.codesolver.session.Session;
+import br.com.codesolver.session.SessionParam;
+import br.com.codesolver.session.SimpleSession;
+import br.com.codesolver.session.SimpleSessionManager;
 
 /**
  * Testes unitários para {@link SimpleSessionManager}.

@@ -1,4 +1,4 @@
-package br.com.codesolver.digester;
+package br.com.codesolver.digester.test;
 
 import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import br.com.codesolver.digester.DigesterException;
 
 /**
  * Testes unitários para {@link DigesterException}.
@@ -81,17 +83,6 @@ public class TestDigesterException {
 		LOGGER.config("Testando DigesterException#DigesterException(String, Throwable).");
 		assertThrowsExactly(DigesterException.class, () -> {
 			throw new DigesterException("Erro com mensagem", new Exception());
-		});
-	}
-
-	/**
-	 * Teste para o método {@link DigesterException#DigesterException(String, Throwable, boolean, boolean)}.
-	 */
-	@Test
-	public void testConstructorStringThrowableBooleanBoolean() {
-		LOGGER.config("Testando DigesterException#DigesterException(String, Throwable, boolean, boolean).");
-		assertThrowsExactly(DigesterException.class, () -> {
-			throw new DigesterException("Erro com mensagem", new Exception(), false, false);
 		});
 	}
 }

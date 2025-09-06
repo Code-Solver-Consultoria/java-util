@@ -1,4 +1,4 @@
-package br.com.codesolver.digester;
+package br.com.codesolver.digester.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -8,6 +8,12 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import br.com.codesolver.digester.AlgorithmType;
+import br.com.codesolver.digester.Digester;
+import br.com.codesolver.digester.DigesterCRC16;
+import br.com.codesolver.digester.DigesterFactory;
+import br.com.codesolver.digester.DigesterSUN;
 
 /**
  * Teste unitários para {@link DigesterFactory}.

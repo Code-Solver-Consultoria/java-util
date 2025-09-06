@@ -1,4 +1,4 @@
-package br.com.codesolver.util;
+package br.com.codesolver.util.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import br.com.codesolver.util.DateUtil;
 
 /**
  * Teste unitários para tratamento do {@link DateUtil}.

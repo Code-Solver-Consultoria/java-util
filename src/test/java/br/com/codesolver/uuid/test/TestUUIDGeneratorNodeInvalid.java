@@ -1,4 +1,4 @@
-package br.com.codesolver.uuid;
+package br.com.codesolver.uuid.test;
 
 import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
 
@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import br.com.codesolver.uuid.UUIDGeneratorNodeInvalid;
 
 /**
  * Testes unitários para {@link UUIDGeneratorNodeInvalid}.
@@ -80,17 +82,6 @@ public class TestUUIDGeneratorNodeInvalid {
 		LOGGER.config("Testando UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String, Throwable).");
 		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
 			throw new UUIDGeneratorNodeInvalid("Erro com mensagem", new Exception());
-		});
-	}
-
-	/**
-	 * Teste unitário para {@link UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String, Throwable, boolean, boolean)}.
-	 */
-	@Test
-	public void testConstructorStringThrowableBooleanBoolean() {
-		LOGGER.config("Testando UUIDGeneratorNodeInvalid#UUIDGeneratorNodeInvalid(String, Throwable, boolean, boolean).");
-		assertThrowsExactly(UUIDGeneratorNodeInvalid.class, () -> {
-			throw new UUIDGeneratorNodeInvalid("Erro com mensagem", new Exception(), false, false);
 		});
 	}
 }

@@ -1,4 +1,4 @@
-package br.com.codesolver.uuid;
+package br.com.codesolver.uuid.test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -11,6 +11,10 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import br.com.codesolver.uuid.UUIDGenerator;
+import br.com.codesolver.uuid.UUIDGeneratorNodeInvalid;
+import br.com.codesolver.uuid.UUIDGeneratorVersionInvalid;
 
 /**
  * Teste unitários para {@link UUIDGenerator}.
