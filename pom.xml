@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>java-util</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>java-util</name>
 	<description>Utilitário de componentes para projetos em Java.</description>
 
