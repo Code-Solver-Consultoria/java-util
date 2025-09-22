@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import br.com.codesolver.util.Version;
@@ -121,8 +122,11 @@ public class VersionTest {
 	
 	/**
 	 * Teste para o método {@link Version#decode(Package)}.
+	 * 
+	 * @deprecated Não é mais possível simular a classe Package.
 	 */
 	@Test
+	@Disabled
 	public void testDecode() {
 		LOGGER.config("Testando Version#decode(Package).");
 		Package pack = EasyMock.createMock(Package.class);

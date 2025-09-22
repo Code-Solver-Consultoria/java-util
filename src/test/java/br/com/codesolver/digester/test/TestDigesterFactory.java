@@ -2,6 +2,7 @@ package br.com.codesolver.digester.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import br.com.codesolver.digester.AlgorithmType;
 import br.com.codesolver.digester.Digester;
 import br.com.codesolver.digester.DigesterCRC16;
+import br.com.codesolver.digester.DigesterException;
 import br.com.codesolver.digester.DigesterFactory;
 import br.com.codesolver.digester.DigesterSUN;
 
@@ -67,5 +69,17 @@ public class TestDigesterFactory {
 		Digester digester = DigesterFactory.getInstance(AlgorithmType.MD5);
 		assertNotNull(digester);
 		assertEquals(digester.getClass(), DigesterSUN.class);
+	}
+
+	/**
+	 * Teste para o método {@link DigesterFactory#getInstance(AlgorithmType)}
+	 * para um algorítimo nulo.
+	 */
+	@Test
+	public void testGetInstanceAlgorithmTypeNull() {
+		LOGGER.config("Testando DigesterFactory#getInstance(AlgorithmType) para algorítimo nulo.");
+		assertThrows(DigesterException.class, () -> {
+			DigesterFactory.getInstance(null);
+		});
 	}
 }

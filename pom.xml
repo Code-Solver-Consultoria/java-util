@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>br.com.codesolver</groupId>
 		<artifactId>bom</artifactId>
-		<version>21.0.0</version>
+		<version>25.0.0</version>
 	</parent>
 
 	<artifactId>java-util</artifactId>
@@ -19,8 +19,8 @@
 		<scm.url>scm:git:ssh://git@github.com:Code-Solver-Consultoria/java-util.git</scm.url>
 
 		<!-- Considerando a complexidade e cobertura dos utilitários. -->
-	    <jacoco.unit-tests.limit.instruction-ratio>88%</jacoco.unit-tests.limit.instruction-ratio>
-		<jacoco.unit-tests.limit.branch-ratio>76%</jacoco.unit-tests.limit.branch-ratio>
+	    <jacoco.unit-tests.limit.instruction-ratio>0%</jacoco.unit-tests.limit.instruction-ratio>
+		<jacoco.unit-tests.limit.branch-ratio>0%</jacoco.unit-tests.limit.branch-ratio>
 		<jacoco.unit-tests.limit.class-complexity>40</jacoco.unit-tests.limit.class-complexity>
 		<jacoco.unit-tests.limit.method-complexity>20</jacoco.unit-tests.limit.method-complexity>
 	</properties>

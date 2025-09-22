@@ -12,6 +12,6 @@ module br.com.codesolver.util.test {
 
     opens br.com.codesolver.digester.test to org.junit.platform.commons;
     opens br.com.codesolver.session.test to org.junit.platform.commons;
-    opens br.com.codesolver.util.test to org.junit.platform.commons;
+    opens br.com.codesolver.util.test to org.junit.platform.commons, br.com.codesolver.util;
     opens br.com.codesolver.uuid.test to org.junit.platform.commons;
 }

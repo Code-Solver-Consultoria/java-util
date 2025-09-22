@@ -3,23 +3,21 @@
 {
 	"name": "[Code Solver] java-util",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	//image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
-		"build": {
-		// Sets the run context to one level up instead of the .devcontainer folder.
-		"context": "..",
-		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-		"dockerfile": "Dockerfile"
-	},
+	"image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
 
-	// "features": {
-	// 	"ghcr.io/devcontainers/features/common-utils:2": {},
-	// 	"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
-	// 	"ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
-	// 	"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {},
-	// 	"ghcr.io/devcontainers-extra/features/ant-sdkman:2": {},
-	// 	"ghcr.io/devcontainers-extra/features/maven-sdkman:2": {},
-	// 	"ghcr.io/devcontainers-extra/features/zsh-plugins:0": {}
-	// },
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "none",
+			"installMaven": "true",
+			"installGradle": "false"
+		},
+		"ghcr.io/devcontainers/features/common-utils:2": {},
+		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
+		"ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
+		"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {},
+		"ghcr.io/devcontainers-extra/features/ant-sdkman:2": {},
+		"ghcr.io/devcontainers-extra/features/zsh-plugins:0": {}
+	},
 
 	"mounts": [
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2,type=bind",
@@ -28,8 +26,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"redhat.vscode-xml",
-				"vscjava.vscode-java-pack"
+				"redhat.vscode-xml"
 			]
 		}
 	},
@@ -44,5 +41,5 @@
 	// "customizations": {},
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "vscode"
+	// "remoteUser": "root"
 }

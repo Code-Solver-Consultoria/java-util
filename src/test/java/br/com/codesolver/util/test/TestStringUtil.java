@@ -406,4 +406,19 @@ public class TestStringUtil {
             StringUtil.encodeIPv4("256.256.256.256");
         });
     }
+
+    /**
+     * Teste para o método {@link StringUtil#toString(Object)}.
+     */
+    @Test
+    public void testToString() {
+        LOGGER.config("Testando StringUtil#toString(Object).");
+        class Person {
+            public String name = "Code Solver";
+            public int id = 1;
+        }
+        String result = StringUtil.toString(new Person());
+        assertTrue(result.contains("Person[name=Code Solver,id=1"));
+    }
 }
+
