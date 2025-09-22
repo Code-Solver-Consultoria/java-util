@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site xmlns="http://maven.apache.org/DECORATION/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 https://maven.apache.org/xsd/decoration-1.0.0.xsd"
+    name="${project.artifactId}">
+
+    <bannerLeft name="${project.artifactId}">
+        <image src="./images/logotipo.png" position="left" alt="Logotipo da Code Solver" width="64"
+            height="64" />
+    </bannerLeft>
+
+    <bannerRight />
+
+    <publishDate position="left" format="dd/MM/yyyy HH:mm z" />
+    <version position="right" />
+    <edit>${project.scm.url}</edit>
+
+    <poweredBy>
+        <logo>
+            <image src="./images/codesolver.png" position="left" alt="Code Solver" width="215"
+                height="48" />
+        </logo>
+    </poweredBy>
+
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>2.1.0</version>
+    </skin>
+
+    <body>
+        <menu name="Main Menu">
+            <item name="Home" href="index.html" />
+        </menu>
+        <menu ref="parent"/>
+        <menu ref="modules" />
+        <menu ref="reports" />
+    </body>
+
+    <custom>
+        <fluidoSkin>
+            <topBarEnabled>true</topBarEnabled>
+            <sideBarEnabled>false</sideBarEnabled>
+            <navBarStyle>navbar-inverse</navBarStyle>
+            <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+            <copyrightClass>pull-left</copyrightClass>
+            <profile>production</profile>
+            <gitHub>
+                <projectId>Code-Solver-Consultoria/repository</projectId>
+                <ribbonOrientation>right</ribbonOrientation>
+                <ribbonColor>black</ribbonColor>
+            </gitHub>
+            <topBarIcon>
+                <name>return</name>
+                <alt>Retornar para a lista inicial</alt>
+                <src>/images/return.png</src>
+                <href>/</href>
+            </topBarIcon>
+        </fluidoSkin>
+    </custom>
+</site>

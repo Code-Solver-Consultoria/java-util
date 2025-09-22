@@ -1,0 +1,48 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+	"name": "[Code Solver] java-util",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	//image": "mcr.microsoft.com/devcontainers/java:1-21-bookworm",
+		"build": {
+		// Sets the run context to one level up instead of the .devcontainer folder.
+		"context": "..",
+		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+		"dockerfile": "Dockerfile"
+	},
+
+	// "features": {
+	// 	"ghcr.io/devcontainers/features/common-utils:2": {},
+	// 	"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
+	// 	"ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
+	// 	"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {},
+	// 	"ghcr.io/devcontainers-extra/features/ant-sdkman:2": {},
+	// 	"ghcr.io/devcontainers-extra/features/maven-sdkman:2": {},
+	// 	"ghcr.io/devcontainers-extra/features/zsh-plugins:0": {}
+	// },
+
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.m2,target=/home/vscode/.m2,type=bind",
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"redhat.vscode-xml",
+				"vscjava.vscode-java-pack"
+			]
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "java -version",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode"
+}

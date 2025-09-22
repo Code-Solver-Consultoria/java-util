@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>br.com.codesolver</groupId>
+		<artifactId>bom</artifactId>
+		<version>25.0.0</version>
+	</parent>
+
+	<artifactId>java-util</artifactId>
+	<version>1.0.0</version>
+	<name>java-util</name>
+	<description>Utilitário de componentes para projetos em Java.</description>
+
+	<properties>
+		<!-- Endereço do repositório do projeto -->
+		<scm.url>scm:git:ssh://git@github.com:Code-Solver-Consultoria/java-util.git</scm.url>
+
+		<!-- Considerando a complexidade e cobertura dos utilitários. -->
+	    <jacoco.unit-tests.limit.instruction-ratio>87%</jacoco.unit-tests.limit.instruction-ratio>
+		<jacoco.unit-tests.limit.branch-ratio>68%</jacoco.unit-tests.limit.branch-ratio>
+		<jacoco.unit-tests.limit.class-complexity>40</jacoco.unit-tests.limit.class-complexity>
+		<jacoco.unit-tests.limit.method-complexity>20</jacoco.unit-tests.limit.method-complexity>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.github.spotbugs</groupId>
+			<artifactId>spotbugs-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.13.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>5.6.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
