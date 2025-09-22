@@ -19,8 +19,8 @@
 		<scm.url>scm:git:ssh://git@github.com:Code-Solver-Consultoria/java-util.git</scm.url>
 
 		<!-- Considerando a complexidade e cobertura dos utilitários. -->
-	    <jacoco.unit-tests.limit.instruction-ratio>0%</jacoco.unit-tests.limit.instruction-ratio>
-		<jacoco.unit-tests.limit.branch-ratio>0%</jacoco.unit-tests.limit.branch-ratio>
+	    <jacoco.unit-tests.limit.instruction-ratio>87%</jacoco.unit-tests.limit.instruction-ratio>
+		<jacoco.unit-tests.limit.branch-ratio>68%</jacoco.unit-tests.limit.branch-ratio>
 		<jacoco.unit-tests.limit.class-complexity>40</jacoco.unit-tests.limit.class-complexity>
 		<jacoco.unit-tests.limit.method-complexity>20</jacoco.unit-tests.limit.method-complexity>
 	</properties>
